@@ -1,0 +1,53 @@
+# experiment3 — same as experiment1 but stronger stability bonus (compare in W&B)
+# Variant: prosperity_stability_bonus 0.7 vs 0.5 — flatten oscillations / push resource toward 500
+
+experiment_name: "experiment3"
+num_agents: 8
+max_steps: 200
+
+# --- TELPAI environment ---
+resource_budget: 1000.0
+regen_period: 60.0
+regen_base: 4.0
+regen_amplitude: 6.0
+extract_rate: 12.0
+invest_rate: 10.0
+explore_gain: 0.5
+prosperity_target: 500.0
+prosperity_penalty_scale: 0.02
+prosperity_stability_bonus: 0.7   # variant: stronger than experiment1 (0.5) — compare equilibrium_quality
+prosperity_stability_band: 0.15
+prosperity_stability_sigma: 180
+over_invest_drift_scale: 0.01
+invest_bonus: 0.2
+extract_penalty: 0.0
+invest_reward_multiplier: 2.5     # same as experiment1
+extract_reward_multiplier: 0.4
+
+# --- Agent / coupling ---
+sparsity_target: 0.2
+max_hops: 2
+
+# --- Learning ---
+learning: true
+num_episodes: 80
+use_topology: true
+learning_rate: 0.002
+gamma: 0.99
+reward_scale: 0.01
+reward_clip: 10.0
+return_clip: 5.0
+epsilon_start: 0.5
+epsilon_end: 0.05
+epsilon_decay_episodes: 0
+
+# --- Weights & Biases ---
+use_wandb: true
+wandb_project: "telpai-quantum"
+wandb_entity: "joshuaspooner7-telpai-quantum"
+
+# Optional: multi-seed for variance (uncomment to run 3 seeds, each logged as separate W&B run)
+# run_seeds: [42, 43, 44]
+
+time_varying_factors: "sinusoidal orbital cycles, period=60 steps"
+value_matrix_constraints: "balanced trinity: economic, social, environmental"

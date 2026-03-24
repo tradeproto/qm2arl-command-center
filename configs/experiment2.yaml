@@ -1,0 +1,50 @@
+# experiment2 — same as experiment1 but stronger invest signal (compare in W&B)
+# Variant: invest_reward_multiplier 3.0 vs 2.5
+
+experiment_name: "experiment2"
+num_agents: 8
+max_steps: 200
+
+# --- TELPAI environment ---
+resource_budget: 1000.0
+regen_period: 60.0          # shorter cycle → more visible oscillation
+regen_base: 4.0
+regen_amplitude: 6.0        # stronger swing (harder to stay at equilibrium)
+extract_rate: 12.0
+invest_rate: 10.0
+explore_gain: 0.5           # lower explore reward → encourages extract/invest balance
+prosperity_target: 500.0
+prosperity_penalty_scale: 0.02   # stronger pull toward equilibrium
+prosperity_stability_bonus: 0.5  # stability_bonus_scale – peak bonus at target
+prosperity_stability_band: 0.15
+prosperity_stability_sigma: 180  # wider band to cover more of the swing range
+over_invest_drift_scale: 0.01   # small negative when resource > target
+invest_bonus: 0.2
+extract_penalty: 0.0
+invest_reward_multiplier: 3.0   # variant: stronger than experiment1 (2.5) – compare resource/volatility
+extract_reward_multiplier: 0.4  # same as experiment1
+
+# --- Agent / coupling ---
+sparsity_target: 0.2
+max_hops: 2
+
+# --- Learning ---
+learning: true
+num_episodes: 80
+use_topology: true
+learning_rate: 0.002
+gamma: 0.99
+reward_scale: 0.01
+reward_clip: 10.0
+return_clip: 5.0
+epsilon_start: 0.5
+epsilon_end: 0.05
+epsilon_decay_episodes: 0
+
+# --- Weights & Biases ---
+use_wandb: true
+wandb_project: "telpai-quantum"
+wandb_entity: "joshuaspooner7-telpai-quantum"
+
+time_varying_factors: "sinusoidal orbital cycles, period=60 steps"
+value_matrix_constraints: "balanced trinity: economic, social, environmental"

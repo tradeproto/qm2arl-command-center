@@ -1,0 +1,36 @@
+# QM2ARL default config — TELPAI resource economy + agent coupling
+# Narrative (for logging/docs): time_varying_factors, value_matrix_constraints
+
+num_agents: 8
+max_steps: 200
+
+# --- TELPAI environment (resource economy) ---
+resource_budget: 1000.0
+regen_period: 90.0          # time steps for one sinusoidal cycle
+regen_base: 5.0
+regen_amplitude: 3.0
+extract_rate: 10.0          # amount taken per EXTRACT action
+invest_rate: 8.0            # amount added per INVEST action
+explore_gain: 1.0           # reward for EXPLORE (information value)
+prosperity_target: 500.0    # target resource for equilibrium (e.g. 50% of budget)
+prosperity_penalty_scale: 0.01   # penalty per squared deviation from target
+
+# --- Agent / coupling topology (QuantumGrokAgent) ---
+sparsity_target: 0.3        # target edge sparsity for suggest_coupling_topology
+max_hops: 3                 # max hop distance in ring for coupling
+
+# --- Learning (Grok topology + REINFORCE) ---
+learning: false             # set true to train MLP policy with topology-aware obs
+num_episodes: 50            # when learning=true
+use_topology: true          # extend obs with mean neighbor obs from coupling graph
+learning_rate: 0.001
+gamma: 0.99
+reward_scale: 0.01   # scale rewards for stable REINFORCE when learning=true
+reward_clip: 10.0    # clip step rewards to [-reward_clip, reward_clip] for sane gradients
+epsilon_start: 1.0   # initial exploration (random action prob)
+epsilon_end: 0.05    # final exploration after decay
+epsilon_decay_episodes: 0   # 0 = decay over first 80% of num_episodes
+
+# Optional narrative (no effect on simulation)
+time_varying_factors: "sinusoidal orbital cycles, period=90 min"
+value_matrix_constraints: "balanced trinity: economic, social, environmental"

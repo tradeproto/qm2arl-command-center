@@ -1,0 +1,58 @@
+# Sweep config for multipliers & sigma tuning in TELPAI-QUANTUM / QM2ARL
+#
+# How to run:
+#   1. Create sweep (prints sweep ID):
+#        python3 scripts/run_sweep.py --count 10 --base-config configs/experiment1.yaml
+#   2. Run agents in one or more terminals (use your venv Python; replace SWEEP_ID with printed ID):
+#        python3 -m wandb agent joshuaspooner7-telpai-quantum/telpai-quantum/SWEEP_ID --count 10
+#   3. After ~10 runs: edit this file (uncomment method: bayes, comment method: random),
+#      then re-run step 1 to create a new sweep with Bayesian search. Run step 2 with the
+#      new sweep ID — W&B will propose promising configs. Parallel coordinates will show
+#      clusters; best runs have very low equilibrium_deviation.
+#
+# Bayesian optimization (method: bayes):
+#   - Sample-efficient: surrogate model of equilibrium_deviation + Expected Improvement (EI).
+#   - W&B uses a TPE variant — great for continuous/mixed spaces, 10–100 trials.
+
+program: simulations/basic_qm2arl_scale.py
+method: random          # Start here for first 10–20 trials
+# After 10+ runs: switch to Bayesian search (TPE / EI) ↓
+# method: bayes
+
+metric:
+  name: equilibrium_deviation
+  goal: minimize         # Lower = better centering around prosperity_target
+
+parameters:
+  config_path:
+    value: configs/experiment1.yaml
+
+  invest_reward_multiplier:
+    distribution: log_uniform_values
+    min: 0.5
+    max: 5.0
+
+  extract_reward_multiplier:
+    distribution: log_uniform_values
+    min: 0.2
+    max: 2.0
+
+  prosperity_stability_sigma:
+    distribution: uniform
+    min: 50
+    max: 300
+
+  prosperity_stability_bonus:
+    distribution: uniform
+    min: 0.3
+    max: 0.8
+
+# Recommended: hyperband early stopping (works well with bayes)
+# Stops bad configs early to save compute
+early_terminate:
+  type: hyperband
+  max_iter: 200         # max episodes per run
+  s: 2                  # aggressiveness parameter
+
+# Total trials (launcher overrides with --count when using scripts/run_sweep.py)
+num_trials: 20

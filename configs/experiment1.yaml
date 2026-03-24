@@ -1,0 +1,62 @@
+# experiment1 — stronger TELPAI-QUANTUM behavior
+# Tighter equilibrium, more pronounced time-varying regen, sparser coupling
+
+experiment_name: "experiment1"
+num_agents: 8
+max_steps: 200
+
+# --- TELPAI environment ---
+resource_budget: 1000.0
+regen_period: 60.0          # shorter cycle → more visible oscillation
+regen_base: 4.0
+regen_amplitude: 6.0        # stronger swing (harder to stay at equilibrium)
+extract_rate: 12.0
+invest_rate: 10.0
+explore_gain: 1.0
+prosperity_target: 500.0
+prosperity_penalty_scale: 0.04
+prosperity_stability_bonus: 0.6
+prosperity_stability_band: 0.15  # used only if prosperity_stability_sigma is 0 (linear mode)
+prosperity_stability_sigma: 180
+over_invest_drift_scale: 0.01   # small negative when resource > target (prevents runaway hoarding)
+invest_bonus: 0.2
+extract_penalty: 0.0
+# Tuned reward multipliers — stronger invest signal, weaker extract
+invest_reward_multiplier: 3.5
+extract_reward_multiplier: 0.25
+explore_multiplier: 1.0
+stability_bonus_scale: 0.8
+stability_sigma: 120
+# Semantic harmony bonus (agent spec): reward += 0.1 * Hμ, Hμ = 0.8*R_c + 0.1*A_n + 0.1*Ω
+semantic_harmony_scale: 0.2
+semantic_harmony_omega: 1.0     # Ω in Hμ (e.g. future alignment; 1.0 for now)
+
+# --- Agent / coupling ---
+sparsity_target: 0.2        # sparser coupling graph
+max_hops: 2
+memory_capacity: 1000       # ENGRAM-ENGN buffer per agent
+prune_threshold: 0.5        # prune low-Hμ memories below this
+
+# --- Learning ---
+learning: true
+num_episodes: 200   # longer training for robustness
+use_topology: true
+learning_rate: 0.002
+gamma: 0.99
+reward_scale: 0.01   # scale down rewards for stable REINFORCE (prosperity penalty is large)
+reward_clip: 10.0    # clip step rewards so single episodes can't have -10k+; keeps gradients sane
+return_clip: 5.0     # clip per-episode advantages to [-5, 5] for stable gradients
+epsilon_start: 0.5   # higher initial exploration (was 1.0)
+epsilon_end: 0.05
+epsilon_decay_episodes: 0   # 0 = decay over first 80% of num_episodes
+
+# Multi-seed: 200 episodes × 3 seeds, each logged to W&B for robustness comparison
+run_seeds: [42, 43, 44]
+
+# --- Weights & Biases (optional) ---
+use_wandb: true
+wandb_project: "telpai-quantum"
+wandb_entity: "joshuaspooner7-telpai-quantum"   # your wandb username/team
+
+time_varying_factors: "sinusoidal orbital cycles, period=60 steps"
+value_matrix_constraints: "balanced trinity: economic, social, environmental"
