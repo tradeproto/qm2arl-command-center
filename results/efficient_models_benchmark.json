@@ -1,0 +1,73 @@
+{
+  "config": {
+    "obs_dim": 24,
+    "batch": 128,
+    "iters": 100,
+    "seed": 0,
+    "out": "results/efficient_models_benchmark.json"
+  },
+  "numba": false,
+  "returns_max_err": 0.0,
+  "variants": [
+    {
+      "label": "baseline",
+      "num_params": 3779,
+      "nonzero_params": 3779,
+      "sparsity_pct": 0.0,
+      "state_dict_bytes": 17877,
+      "fwd_latency_ms": 0.579,
+      "throughput_rows_per_s": 221081.0,
+      "action_agreement_pct": 100.0,
+      "size_vs_baseline_x": 1.0,
+      "speedup_vs_baseline_x": 1.0
+    },
+    {
+      "label": "compiled",
+      "num_params": 3779,
+      "nonzero_params": 3779,
+      "sparsity_pct": 0.0,
+      "state_dict_bytes": 18005,
+      "fwd_latency_ms": 0.066,
+      "throughput_rows_per_s": 1939575.3,
+      "action_agreement_pct": 100.0,
+      "size_vs_baseline_x": 0.99,
+      "speedup_vs_baseline_x": 8.77
+    },
+    {
+      "label": "binarized",
+      "num_params": 3971,
+      "nonzero_params": 3843,
+      "sparsity_pct": 3.223,
+      "state_dict_bytes": 21939,
+      "fwd_latency_ms": 0.145,
+      "throughput_rows_per_s": 882660.9,
+      "action_agreement_pct": 28.12,
+      "size_vs_baseline_x": 0.81,
+      "speedup_vs_baseline_x": 3.99
+    },
+    {
+      "label": "quantized",
+      "num_params": 0,
+      "nonzero_params": 0,
+      "sparsity_pct": 100.0,
+      "state_dict_bytes": 8831,
+      "fwd_latency_ms": 0.0862,
+      "throughput_rows_per_s": 1485550.2,
+      "action_agreement_pct": 98.44,
+      "size_vs_baseline_x": 2.02,
+      "speedup_vs_baseline_x": 6.72
+    },
+    {
+      "label": "pruned50",
+      "num_params": 3779,
+      "nonzero_params": 1939,
+      "sparsity_pct": 48.69,
+      "state_dict_bytes": 17877,
+      "fwd_latency_ms": 0.0572,
+      "throughput_rows_per_s": 2237558.4,
+      "action_agreement_pct": 78.12,
+      "size_vs_baseline_x": 1.0,
+      "speedup_vs_baseline_x": 10.12
+    }
+  ]
+}

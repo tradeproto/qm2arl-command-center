@@ -1,0 +1,100 @@
+# AutoQMS — Division 11: NQA-1 Nuclear QA Agents
+# 8 agents covering ASME NQA-1-2008/2009a (18 requirements mapped to 8 agent domains).
+# Chapman Nuclear x Green Horizon Innovation — NQA-1 Agent Product.
+# Run: python simulations/compliance_audit.py configs/compliance_nqa1.yaml
+
+experiment_name: "autoqms_nqa1_v1"
+environment_type: compliance
+compliance_preset: nqa1
+
+num_agents: 8
+max_steps: 350
+
+# Compliance targets (NQA-1 requirements — higher bar than ISO due to nuclear safety culture)
+#   organization_authority:    0.95  (Req 1 — QA program structure, authority, independence)
+#   qa_program_procedures:     0.95  (Req 2 — procedures, instructions, drawings, indoctrination)
+#   design_control:            0.93  (Req 3 — design input/output, verification, validation, changes)
+#   procurement_materials:     0.92  (Req 4,7,8 — procurement, purchased items, material ID)
+#   document_records:          0.95  (Req 6,17 — document control, QA records, retention)
+#   process_inspection_test:   0.93  (Req 5,9,10,11 — procedures, special processes, inspection, test)
+#   nonconformance_capa:       0.90  (Req 15,16 — nonconforming items, corrective action)
+#   audit_calibration:         0.92  (Req 12,14,18 — calibration, handling/storage, audits)
+compliance_targets: [0.95, 0.95, 0.93, 0.92, 0.95, 0.93, 0.90, 0.92]
+compliance_init:    [0.20, 0.15, 0.15, 0.20, 0.15, 0.20, 0.10, 0.15]
+
+compliance_min: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+compliance_max: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+minimise_indices: []
+
+coupling_strength: 1.4
+
+# Nuclear QA degradation is higher — safety culture demands constant vigilance
+stress_amplitude: 0.025
+stress_period: 45.0
+degradation_rate: 0.005
+
+invest_rate: 0.045
+extract_rate: 0.03
+explore_noise: 0.02
+
+target_penalty_scale: 0.08
+target_penalty_cap: 7.0
+stability_bonus: 0.45
+stability_sigma: 0.10
+explore_info_gain: 0.5
+harmony_scale: 0.15
+
+learning: true
+num_episodes: 120
+use_topology: true
+per_agent_policy_heads: true
+learning_rate: 0.002
+gamma: 0.99
+reward_scale: 0.01
+reward_clip: 10.0
+return_clip: 5.0
+epsilon_start: 0.6
+epsilon_end: 0.05
+epsilon_decay_episodes: 0
+seed: 42
+
+sparsity_target: 0.25
+max_hops: 2
+memory_capacity: 1000
+prune_threshold: 0.5
+
+quantum_kernel_enabled: true
+quantum_kernel_feature_dim: 8
+quantum_kernel_gamma: 0.5
+quantum_kernel_ref_path: "results/autoqms_nqa1_kernel_ref.npy"
+quantum_kernel_ref_update_every: 10
+quantum_kernel_ref_max: 200
+quantum_kernel_anomaly_bonus_scale: 0.02
+quantum_kernel_every_n_steps: 5
+quantum_kernel_ref_sample_max: 64
+quantum_kernel_harmony_ref_sample_max: 64
+
+use_vqc_feature_map: true
+vqc_seed: 42
+vqc_max_wires: 8
+vqc_backend: "bluequbit.cpu"
+
+quantum_kernel_harmony_ref_enabled: true
+quantum_kernel_harmony_ref_path: "results/autoqms_nqa1_harmony_ref.npy"
+quantum_kernel_harmony_ref_max: 200
+quantum_kernel_harmony_bonus_scale: 0.01
+quantum_kernel_harmony_update_threshold: 0.005
+
+engram_kernel_prune_enabled: true
+engram_kernel_similarity_threshold: 0.90
+
+resume_training: true
+training_checkpoint_path: results/autoqms_nqa1_checkpoint.pt
+checkpoint_every_episodes: 1
+training_checkpoint_remove_on_complete: true
+
+quantum_entropy_threshold: 0.42
+quantum_threshold_bonus_scale: 0.0
+use_ibm_quantum: false
+use_wandb: false

@@ -1,0 +1,106 @@
+# AutoQMS — Division 14: Clinical Trials & Quantum Health Solutions
+# 8 agents covering ICH-GCP (E6 R2), FDA 21 CFR Parts 11/50/56/312/812, and
+# ISO 14155 (clinical investigation of medical devices). Supports the SkinProto
+# Protocol Matrix (skin damage & wound care; methylation, encapsulation,
+# cross-matrix, oncology safety).
+#
+# SCOPE: regulatory readiness & protocol-documentation decision support ONLY.
+#   NOT medical advice. NOT a medical device. Does NOT replace IRB/IEC, FDA,
+#   sponsors, qualified clinical investigators, or medical professionals.
+#
+# Run: python simulations/compliance_audit.py configs/compliance_clinical_trials.yaml
+
+experiment_name: "autoqms_clinical_trials_v1"
+environment_type: compliance
+compliance_preset: clinical_trials
+
+num_agents: 8
+max_steps: 350
+
+# Compliance targets (GCP / regulatory readiness for a first-in-human protocol)
+#   protocol_design_endpoints:      0.93  (ICH E6/E8, endpoint definition)
+#   preclinical_mechanism:          0.90  (mechanism, methylation/ECM evidence, tox)
+#   cmc_formulation_encapsulation:  0.92  (GMP CMC, encapsulation/formulation quality)
+#   safety_pharmacovigilance:       0.94  (AE/SAE, DSMB, carcinogenicity/oncology safety)
+#   irb_ethics_consent:             0.93  (21 CFR 50/56, Declaration of Helsinki, ICF)
+#   data_integrity_part11:          0.92  (21 CFR Part 11, ALCOA+, EDC)
+#   statistical_efficacy:           0.90  (SAP, powering, endpoint analysis)
+#   regulatory_submission_audit:    0.93  (IND/IDE, ISO 14155, submission readiness)
+compliance_targets: [0.93, 0.90, 0.92, 0.94, 0.93, 0.92, 0.90, 0.93]
+compliance_init:    [0.33, 0.28, 0.30, 0.26, 0.32, 0.30, 0.27, 0.24]
+
+compliance_min: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+compliance_max: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+minimise_indices: []
+
+coupling_strength: 1.35
+
+stress_amplitude: 0.022
+stress_period: 50.0
+degradation_rate: 0.004
+
+invest_rate: 0.045
+extract_rate: 0.032
+explore_noise: 0.02
+
+target_penalty_scale: 0.075
+target_penalty_cap: 6.5
+stability_bonus: 0.42
+stability_sigma: 0.11
+explore_info_gain: 0.52
+harmony_scale: 0.14
+
+learning: true
+num_episodes: 120
+use_topology: true
+per_agent_policy_heads: true
+learning_rate: 0.002
+gamma: 0.99
+reward_scale: 0.01
+reward_clip: 10.0
+return_clip: 5.0
+epsilon_start: 0.6
+epsilon_end: 0.05
+epsilon_decay_episodes: 0
+seed: 42
+
+sparsity_target: 0.25
+max_hops: 2
+memory_capacity: 1000
+prune_threshold: 0.5
+
+quantum_kernel_enabled: true
+quantum_kernel_feature_dim: 8
+quantum_kernel_gamma: 0.5
+quantum_kernel_ref_path: "results/autoqms_clinical_trials_kernel_ref.npy"
+quantum_kernel_ref_update_every: 10
+quantum_kernel_ref_max: 200
+quantum_kernel_anomaly_bonus_scale: 0.02
+quantum_kernel_every_n_steps: 5
+quantum_kernel_ref_sample_max: 64
+quantum_kernel_harmony_ref_sample_max: 64
+
+use_vqc_feature_map: true
+vqc_seed: 42
+vqc_max_wires: 8
+vqc_backend: "bluequbit.cpu"
+
+quantum_kernel_harmony_ref_enabled: true
+quantum_kernel_harmony_ref_path: "results/autoqms_clinical_trials_harmony_ref.npy"
+quantum_kernel_harmony_ref_max: 200
+quantum_kernel_harmony_bonus_scale: 0.01
+quantum_kernel_harmony_update_threshold: 0.005
+
+engram_kernel_prune_enabled: true
+engram_kernel_similarity_threshold: 0.90
+
+resume_training: true
+training_checkpoint_path: results/autoqms_clinical_trials_checkpoint.pt
+checkpoint_every_episodes: 1
+training_checkpoint_remove_on_complete: true
+
+quantum_entropy_threshold: 0.42
+quantum_threshold_bonus_scale: 0.0
+use_ibm_quantum: false
+use_wandb: false

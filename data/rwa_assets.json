@@ -1,0 +1,32 @@
+{
+  "assets": {
+    "RWA-PILOT-001": {
+      "asset_id": "RWA-PILOT-001",
+      "name": "Cook Inlet Prospect \u2014 Pilot",
+      "operator": "GHI TELPAI-Q",
+      "basin": "Cook Inlet",
+      "lat": 61.2,
+      "lon": -149.9,
+      "p50_mmboe": 12.5,
+      "classification": {
+        "category": "probable_2p",
+        "certainty_pct": 32.2,
+        "technical_score": 0.5825,
+        "commercial_score": 0.7175,
+        "tokenizable": true,
+        "token_tier": "supplemental_risk_adjusted",
+        "sec_disclosure_basis": "supplemental_only",
+        "notes": [
+          "Probable \u2014 supplemental disclosure only; not primary SEC filing basis."
+        ]
+      },
+      "volumes": {
+        "p10_mmboe": 7.424,
+        "p50_mmboe": 11.703,
+        "p90_mmboe": 18.401,
+        "mean_mmboe": 12.465,
+        "samples": 10000
+      }
+    }
+  }
+}

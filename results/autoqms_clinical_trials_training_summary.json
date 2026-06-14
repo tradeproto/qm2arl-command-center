@@ -1,0 +1,64 @@
+{
+  "experiment": "autoqms_clinical_trials_v1",
+  "preset": "clinical_trials",
+  "episodes": 120,
+  "best_hmu": 0.9909,
+  "best_overall_pct": 91.0,
+  "best_status": "AUDIT-READY",
+  "compliance_init": [
+    1.0,
+    1.0,
+    0.28,
+    0.999,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "domains": {
+    "protocol_design_endpoints": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 7.0
+    },
+    "preclinical_mechanism": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 10.0
+    },
+    "cmc_formulation_encapsulation": {
+      "score_pct": 28.0,
+      "status": "NOT ADDRESSED",
+      "gap_pct": 64.0
+    },
+    "safety_pharmacovigilance": {
+      "score_pct": 99.9,
+      "status": "CONFORMING",
+      "gap_pct": 5.9
+    },
+    "irb_ethics_consent": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 7.0
+    },
+    "data_integrity_part11": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 8.0
+    },
+    "statistical_efficacy": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 10.0
+    },
+    "regulatory_submission_audit": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 7.0
+    }
+  },
+  "config_path": "/home/joshua/QM2ARL/configs/compliance_clinical_trials.yaml",
+  "rwa_blocker": "cmc_formulation_encapsulation \u2014 encapsulation GMP CMC characterization, release kinetics & stability data not fully documented for the IND/IDE CMC module",
+  "asset": "SkinProto Protocol Matrix \u2014 skin damage & wound care",
+  "demo_corpus": "src/quantum_health/skinproto.py"
+}

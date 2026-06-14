@@ -1,0 +1,61 @@
+{
+  "experiment": "autoqms_nqa1_v1",
+  "preset": "nqa1",
+  "episodes": 120,
+  "best_hmu": 0.9998,
+  "best_overall_pct": 93.1,
+  "best_status": "AUDIT-READY",
+  "compliance_init": [
+    0.95,
+    0.955,
+    0.955,
+    0.985,
+    0.977,
+    0.951,
+    0.984,
+    0.694
+  ],
+  "domains": {
+    "organization_authority": {
+      "score_pct": 95.0,
+      "status": "CONFORMING",
+      "gap_pct": 0.0
+    },
+    "qa_program_procedures": {
+      "score_pct": 95.5,
+      "status": "CONFORMING",
+      "gap_pct": 0.5
+    },
+    "design_control": {
+      "score_pct": 95.5,
+      "status": "CONFORMING",
+      "gap_pct": 2.5
+    },
+    "procurement_materials": {
+      "score_pct": 98.5,
+      "status": "CONFORMING",
+      "gap_pct": 6.5
+    },
+    "document_records": {
+      "score_pct": 97.7,
+      "status": "CONFORMING",
+      "gap_pct": 2.7
+    },
+    "process_inspection_test": {
+      "score_pct": 95.1,
+      "status": "CONFORMING",
+      "gap_pct": 2.1
+    },
+    "nonconformance_capa": {
+      "score_pct": 98.4,
+      "status": "CONFORMING",
+      "gap_pct": 8.4
+    },
+    "audit_calibration": {
+      "score_pct": 69.4,
+      "status": "SIGNIFICANT GAP",
+      "gap_pct": 22.6
+    }
+  },
+  "config_path": "/home/joshua/QM2ARL/configs/compliance_nqa1.yaml"
+}

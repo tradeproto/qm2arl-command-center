@@ -1,0 +1,61 @@
+{
+  "experiment": "autoqms_iso_v1",
+  "preset": "iso_qms",
+  "episodes": 100,
+  "best_hmu": 0.9995,
+  "best_overall_pct": 90.6,
+  "best_status": "AUDIT-READY",
+  "compliance_init": [
+    1.0,
+    1.0,
+    0.495,
+    0.92,
+    0.988,
+    1.0,
+    1.0,
+    0.842
+  ],
+  "domains": {
+    "context_leadership": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 8.0
+    },
+    "planning_risk": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 10.0
+    },
+    "resources_competence": {
+      "score_pct": 49.5,
+      "status": "NOT ADDRESSED",
+      "gap_pct": 38.5
+    },
+    "documentation_control": {
+      "score_pct": 92.0,
+      "status": "CONFORMING",
+      "gap_pct": 3.0
+    },
+    "operations_ai_lifecycle": {
+      "score_pct": 98.8,
+      "status": "CONFORMING",
+      "gap_pct": 8.8
+    },
+    "performance_evaluation": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 8.0
+    },
+    "improvement_capa": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 10.0
+    },
+    "infosec_cmmc": {
+      "score_pct": 84.2,
+      "status": "PARTIALLY CONFORMING",
+      "gap_pct": 3.8
+    }
+  },
+  "config_path": "/home/joshua/QM2ARL/configs/compliance_iso_qms.yaml"
+}

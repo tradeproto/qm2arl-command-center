@@ -1,0 +1,64 @@
+{
+  "experiment": "autoqms_ni43101_v1",
+  "preset": "ni43101",
+  "episodes": 120,
+  "best_hmu": 0.9866,
+  "best_overall_pct": 90.3,
+  "best_status": "AUDIT-READY",
+  "compliance_init": [
+    0.96,
+    1.0,
+    0.541,
+    0.834,
+    0.957,
+    1.0,
+    0.984,
+    0.949
+  ],
+  "domains": {
+    "geology_deposit_model": {
+      "score_pct": 96.0,
+      "status": "CONFORMING",
+      "gap_pct": 3.0
+    },
+    "drilling_exploration": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 8.0
+    },
+    "sampling_qaqc": {
+      "score_pct": 54.1,
+      "status": "SIGNIFICANT GAP",
+      "gap_pct": 39.9
+    },
+    "mineral_resource_estimate": {
+      "score_pct": 83.4,
+      "status": "PARTIALLY CONFORMING",
+      "gap_pct": 9.6
+    },
+    "mineral_reserve_modifying_factors": {
+      "score_pct": 95.7,
+      "status": "CONFORMING",
+      "gap_pct": 5.7
+    },
+    "metallurgy_recovery": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 9.0
+    },
+    "economic_analysis": {
+      "score_pct": 98.4,
+      "status": "CONFORMING",
+      "gap_pct": 8.4
+    },
+    "qp_attestation_tokenization": {
+      "score_pct": 94.9,
+      "status": "CONFORMING",
+      "gap_pct": 1.9
+    }
+  },
+  "config_path": "/home/joshua/QM2ARL/configs/compliance_ni43101.yaml",
+  "rwa_blocker": "sampling_qaqc \u2014 QA/QC duplicates, CRM/blank inserts and twin-hole verification not fully documented in Technical Report (Item 11-12)",
+  "asset": "Example Gold Project \u2014 NI 43-101 resource pilot",
+  "demo_corpus": "configs/rwa_gold_mine_ni43101.example.json"
+}

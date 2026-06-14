@@ -1,0 +1,106 @@
+{
+  "version": "1.0",
+  "format": "dragon",
+  "header": {
+    "magic": "DRGN",
+    "type": "RWA_ORACLE_EPOCH",
+    "chain": "ethereum:sepolia",
+    "created": "2026-06-13T20:37:37.009495+00:00",
+    "platform": "TELPAI-Q x AutoQMS x DragonSeal"
+  },
+  "document": {
+    "name": "ODL-000002-c6a13caa309f.epoch.json",
+    "asset_id": "balanced",
+    "type": "RWA-ORACLE-EPOCH",
+    "standard": "Omni-Dimensional-Ledger/0.1",
+    "reserve_category": "RESONANT",
+    "certainty_pct": 81.5,
+    "verification": {
+      "system_resonance": 0.8152,
+      "magnitude": 0.82,
+      "phase_coherence": 0.9887,
+      "quantum_coherence": 0.9995,
+      "hmu": null,
+      "verdict": "RESONANT",
+      "dimensions": {
+        "prosperity": 0.82,
+        "planet": 0.82,
+        "equity": 0.82,
+        "health": 0.82,
+        "knowledge": 0.82,
+        "connection": 0.82
+      },
+      "binding_dimension": "prosperity",
+      "binding_value": 0.82,
+      "backend": "default.qubit",
+      "coverage": {
+        "measured": [
+          "prosperity",
+          "planet",
+          "equity",
+          "health",
+          "knowledge",
+          "connection"
+        ],
+        "missing": [],
+        "coverage_pct": 100.0
+      },
+      "notes": []
+    },
+    "hash": "sha256:c6a13caa309f51fd7a85ee9ccbc6943698786196fa4e30e168aef8b902594859",
+    "seal_id": "DS-RWA-C6A13CAA309F",
+    "organization": "Green Horizon Innovation LLC (SDVOSB)"
+  },
+  "signer": {
+    "name": "Joshua Spooner",
+    "role": "Principal \u2014 Green Horizon Innovation LLC (SDVOSB)",
+    "entity": "Green Horizon Innovation LLC (SDVOSB)",
+    "date": "2026-06-13"
+  },
+  "epoch": {
+    "epoch_id": "ODL-000002-c6a13caa309f",
+    "asset_id": "balanced",
+    "sha256": "c6a13caa309f51fd7a85ee9ccbc6943698786196fa4e30e168aef8b902594859",
+    "standard": "Omni-Dimensional-Ledger/0.1",
+    "reserve_category": "RESONANT",
+    "certainty_pct": 81.5,
+    "quantum_verification": {
+      "system_resonance": 0.8152,
+      "magnitude": 0.82,
+      "phase_coherence": 0.9887,
+      "quantum_coherence": 0.9995,
+      "hmu": null,
+      "verdict": "RESONANT",
+      "dimensions": {
+        "prosperity": 0.82,
+        "planet": 0.82,
+        "equity": 0.82,
+        "health": 0.82,
+        "knowledge": 0.82,
+        "connection": 0.82
+      },
+      "binding_dimension": "prosperity",
+      "binding_value": 0.82,
+      "backend": "default.qubit",
+      "coverage": {
+        "measured": [
+          "prosperity",
+          "planet",
+          "equity",
+          "health",
+          "knowledge",
+          "connection"
+        ],
+        "missing": [],
+        "coverage_pct": 100.0
+      },
+      "notes": []
+    }
+  },
+  "attestation": {
+    "status": "LOCAL_SEAL_READY",
+    "verify_url": "https://dragonseal.io/verify/c6a13caa309f51fd7a85ee9ccbc6943698786196fa4e30e168aef8b902594859",
+    "method": "DragonSeal.attestDocument",
+    "note": "Pin to Lighthouse, then anchor on dragonseal.io (Sepolia)."
+  }
+}

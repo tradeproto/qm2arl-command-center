@@ -1,0 +1,98 @@
+{
+  "asset_id": "RWA-RIVERS-BEND-001",
+  "name": "Rivers Bend Project — Gas Reserves Pilot",
+  "operator": "DoEnergy (Operating Partner)",
+  "basin": "Upper Houston Embayment",
+  "lat": 30.6,
+  "lon": -95.1,
+  "country": "USA",
+  "commodity_primary": "natural_gas",
+  "boe_factor_mcf_per_boe": 6.0,
+  "nri_pct": 72,
+  "p50_gas_bcf": 50.5,
+  "p50_mmboe": 8.4,
+  "gas_reserves_1p_operator_est": {
+    "pdp_bcfg": 2.5,
+    "pdnp_yegua_bcf": 18.0,
+    "pdnp_yegua_mmbo": 1.8,
+    "pud_middle_wilcox_bcf": 30.0,
+    "pud_middle_wilcox_mmbo": 0.3,
+    "pud_locations": 6,
+    "note": "Operator/PPM estimates — QRE must certify before offering"
+  },
+  "test_well": {
+    "name": "#1 Yegua",
+    "depth_ft": 6500,
+    "test_rate_mmcfd": 1.025,
+    "condensate_bcpd": 2,
+    "status": "shut_in_awaiting_tie_in"
+  },
+  "price_deck": {
+    "henry_hub_usd_mmbtu": 2.5,
+    "jkm_export_base_usd_mmbtu": 12.0,
+    "oil_usd_bbl": 75.0
+  },
+  "undeveloped": true,
+  "discovery_stage": "discovered",
+  "reg_d_rule": "506c",
+  "technical": {
+    "volumetric_confidence": 0.78,
+    "seismic_interpretation_confidence": 0.82,
+    "magnetometry_anomaly_strength": 0.7,
+    "production_history_months": 0,
+    "analog_match_score": 0.72,
+    "simulation_quality": 0.68
+  },
+  "commercial": {
+    "price_deck_current": 0.7,
+    "opex_breakeven_ratio": 0.4,
+    "fiscal_terms_certainty": 0.75,
+    "development_plan_approved": true,
+    "pud_five_year_plan": true,
+    "regulatory_approval": 0.7
+  },
+  "checklist_state": {
+    "prms_classification": false,
+    "qre_report": false,
+    "qra_audit": false
+  },
+  "client": {
+    "name": "DoEnergy",
+    "program": "Rivers Bend — lighthouse client",
+    "investment_group": "Madison Avenue Equity Group + token LPs (engaged)",
+    "bank_partner": {
+      "name": "Vantage Bank — Vantage Collabs (via TradeWatch Exchange)",
+      "url": "https://www.vantage.bank/collaborations",
+      "contact": "Jeff Sinnott, CEO",
+      "asks": ["reserve_based_loan", "collabs_ledger_onboarding", "506c_escrow", "spv_fbo_accounts"],
+      "engagement_letter": "2026-06-06_TradeWatch_Rivers_Bend_Vantage_Engagement_Letter.md",
+      "vantage_collabs_letter": "2026-06-05_Vantage_Collabs_Engagement_Letter.md",
+      "presentation_channel": "TradeWatch Exchange — Terry Corley",
+      "vantage_interest_status": "expressed_preliminary_interest_in_tradeproto",
+      "credibility_note": "Bank-sponsored program validates tokenization for DoEnergy and investment group"
+    }
+  },
+  "monetization_gates": {
+    "gate_1": {
+      "label": "Proved gas + #1 Yegua tie-in",
+      "scope_bcf": 50.5,
+      "token_action": "Open Reg D 506(c) tranche · start Vantage RBL borrowing base"
+    },
+    "gate_2": {
+      "label": "PUD Middle Wilcox",
+      "scope_bcf": 30,
+      "token_action": "Expand ERC-3643 register · Phase B drilling capital"
+    },
+    "gate_3": {
+      "label": "Probable Lower Wilcox",
+      "scope_tcfe": 1,
+      "token_action": "Convertible / senior tranche · appraisal wells"
+    },
+    "gate_4": {
+      "label": "Prospective Cretaceous",
+      "scope_tcfe": "1-6",
+      "token_action": "Exploration tranche · milestone tokens · farm-in"
+    }
+  },
+  "stack": ["TELPAI-Q", "AutoQMS-Division-12", "TradeProto", "DragonSeal", "Vantage-BaaS"]
+}

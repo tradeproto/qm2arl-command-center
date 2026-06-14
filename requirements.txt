@@ -18,4 +18,13 @@ kaleido>=0.2.0    # static export for Plotly (e.g. W&B images)
 pandas>=2.0.0     # dataframes for charts and logging
 fastapi>=0.110.0  # GQ Live Brain API server
 uvicorn>=0.30.0   # ASGI server for FastAPI
+python-multipart>=0.0.9  # AutoQMS API file uploads
 requests>=2.31.0  # Streamlit -> FastAPI communication
+python-dotenv>=1.0.0  # load XAI_API_KEY from repo-root .env for API + training
+websockets>=12.0  # AISStream.io real-time AIS (GET /data/ais)
+pennylane>=0.40.0
+pennylane-qiskit>=0.42.0  # qiskit.remote + IBM Quantum (see src/quantum_circuit_optimizer.py)
+pennylane-lightning>=0.41.0  # GPU sim: set QM2ARL_USE_LIGHTNING=1 (see docs/QUANTUM_STACK.md)
+bluequbit>=0.18.0  # BlueQubit cloud quantum: set BLUEQUBIT_API_TOKEN (see docs/QUANTUM_STACK.md)
+Brian2>=2.5.1  # neuromorphic SNN prototyping (see src/neuromorphic_network.py)
+numba>=0.59.0  # optional: JIT-compile discounted-returns hot loop (see src/efficient_models.py); pure-numpy fallback if absent

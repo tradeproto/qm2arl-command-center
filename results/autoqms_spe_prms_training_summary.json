@@ -1,0 +1,68 @@
+{
+  "experiment": "autoqms_spe_prms_v1",
+  "preset": "spe_prms",
+  "episodes": 120,
+  "best_hmu": 0.9808,
+  "best_overall_pct": 88.8,
+  "best_status": "AUDIT-READY",
+  "domains": {
+    "prms_framework_definitions": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 6.0
+    },
+    "reserves_classification": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 7.0
+    },
+    "contingent_resources": {
+      "score_pct": 39.4,
+      "status": "NOT ADDRESSED",
+      "gap_pct": 51.6
+    },
+    "prospective_resources": {
+      "score_pct": 71.4,
+      "status": "PARTIALLY CONFORMING",
+      "gap_pct": 16.6
+    },
+    "technical_evaluation": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 8.0
+    },
+    "commercial_evaluation": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 10.0
+    },
+    "uncertainty_aggregation": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 11.0
+    },
+    "audit_rwa_tokenization": {
+      "score_pct": 100.0,
+      "status": "CONFORMING",
+      "gap_pct": 7.0
+    }
+  },
+  "artifacts": {
+    "plot": "results/autoqms_spe_prms_rewards.png",
+    "kernel_ref": "results/autoqms_spe_prms_kernel_ref.npy",
+    "harmony_ref": "results/autoqms_spe_prms_harmony_ref.npy"
+  },
+  "rwa_blocker": "contingent_resources \u2014 #1 Yegua tie-in FID / AFE not in Rivers Bend report body (DoEnergy)",
+  "demo_corpus": "autoqms-app/demo/spe_reserves_report_excerpt.md",
+  "asset": "Rivers Bend \u2014 Upper Houston Embayment \u00b7 DoEnergy operator",
+  "compliance_init": [
+    1.0,
+    1.0,
+    0.394,
+    0.714,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ]
+}

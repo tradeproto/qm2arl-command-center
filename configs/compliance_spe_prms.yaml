@@ -1,0 +1,100 @@
+# AutoQMS — Division 12: SPE PRMS Geologist / Reserves Audit Agents
+# 8 agents covering SPE Petroleum Resources Management System (PRMS) and
+# Standards Pertaining to the Estimating and Auditing of Oil & Gas Reserves Information.
+# RWA tokenization audit trail via Dragon Seal + Trade Proto proof chain.
+# Run: python simulations/compliance_audit.py configs/compliance_spe_prms.yaml
+
+experiment_name: "autoqms_spe_prms_v1"
+environment_type: compliance
+compliance_preset: spe_prms
+
+num_agents: 8
+max_steps: 350
+
+# Compliance targets (SPE PRMS / reserves audit readiness for RWA issuance)
+#   prms_framework_definitions:  0.94  (PRMS principles, scope, classification system)
+#   reserves_classification:     0.93  (1P/2P/3P proved/probable/possible)
+#   contingent_resources:        0.91  (1C/2C/3C, development status, commerciality)
+#   prospective_resources:       0.88  (exploration maturity, chance of development)
+#   technical_evaluation:        0.92  (volumetrics, simulation, material balance, decline)
+#   commercial_evaluation:       0.90  (price deck, costs, fiscal terms, economic limit)
+#   uncertainty_aggregation:     0.89  (P10/P50/P90, aggregation rules, determinism)
+#   audit_rwa_tokenization:      0.93  (SPE audit standards, 3rd party, on-chain attestation)
+compliance_targets: [0.94, 0.93, 0.91, 0.88, 0.92, 0.90, 0.89, 0.93]
+compliance_init:    [0.35, 0.30, 0.28, 0.25, 0.32, 0.30, 0.27, 0.22]
+
+compliance_min: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+compliance_max: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+minimise_indices: []
+
+coupling_strength: 1.35
+
+stress_amplitude: 0.022
+stress_period: 50.0
+degradation_rate: 0.004
+
+invest_rate: 0.045
+extract_rate: 0.032
+explore_noise: 0.02
+
+target_penalty_scale: 0.075
+target_penalty_cap: 6.5
+stability_bonus: 0.42
+stability_sigma: 0.11
+explore_info_gain: 0.52
+harmony_scale: 0.14
+
+learning: true
+num_episodes: 120
+use_topology: true
+per_agent_policy_heads: true
+learning_rate: 0.002
+gamma: 0.99
+reward_scale: 0.01
+reward_clip: 10.0
+return_clip: 5.0
+epsilon_start: 0.6
+epsilon_end: 0.05
+epsilon_decay_episodes: 0
+seed: 42
+
+sparsity_target: 0.25
+max_hops: 2
+memory_capacity: 1000
+prune_threshold: 0.5
+
+quantum_kernel_enabled: true
+quantum_kernel_feature_dim: 8
+quantum_kernel_gamma: 0.5
+quantum_kernel_ref_path: "results/autoqms_spe_prms_kernel_ref.npy"
+quantum_kernel_ref_update_every: 10
+quantum_kernel_ref_max: 200
+quantum_kernel_anomaly_bonus_scale: 0.02
+quantum_kernel_every_n_steps: 5
+quantum_kernel_ref_sample_max: 64
+quantum_kernel_harmony_ref_sample_max: 64
+
+use_vqc_feature_map: true
+vqc_seed: 42
+vqc_max_wires: 8
+vqc_backend: "bluequbit.cpu"
+
+quantum_kernel_harmony_ref_enabled: true
+quantum_kernel_harmony_ref_path: "results/autoqms_spe_prms_harmony_ref.npy"
+quantum_kernel_harmony_ref_max: 200
+quantum_kernel_harmony_bonus_scale: 0.01
+quantum_kernel_harmony_update_threshold: 0.005
+
+engram_kernel_prune_enabled: true
+engram_kernel_similarity_threshold: 0.90
+
+resume_training: true
+training_checkpoint_path: results/autoqms_spe_prms_checkpoint.pt
+checkpoint_every_episodes: 1
+training_checkpoint_remove_on_complete: true
+
+quantum_entropy_threshold: 0.42
+quantum_threshold_bonus_scale: 0.0
+use_ibm_quantum: false
+use_wandb: false

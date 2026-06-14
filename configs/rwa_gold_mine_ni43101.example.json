@@ -1,0 +1,66 @@
+{
+  "asset_id": "RWA-GOLD-EXAMPLE-001",
+  "name": "Example Gold Project — NI 43-101 Resource Pilot",
+  "operator": "Example Mining Corp (Operating Partner)",
+  "basin": "Greenstone Belt (example district)",
+  "lat": 48.4,
+  "lon": -81.3,
+  "country": "Canada",
+  "commodity": "gold",
+  "commodity_primary": "gold",
+  "tonnage_mt": 12.5,
+  "grade_gpt": 2.8,
+  "recovery": 0.92,
+  "resource_operator_est": {
+    "indicated_mt": 8.0,
+    "indicated_grade_gpt": 2.9,
+    "inferred_mt": 4.5,
+    "inferred_grade_gpt": 2.6,
+    "cutoff_grade_gpt": 0.8,
+    "note": "Operator estimate — QP must classify and certify before offering"
+  },
+  "is_reserve_candidate": false,
+  "discovery_stage": "resource",
+  "reg_d_rule": "506c",
+  "technical": {
+    "drill_density_confidence": 0.72,
+    "assay_qaqc_confidence": 0.78,
+    "geological_continuity": 0.7,
+    "magnetometry_anomaly_strength": 0.74,
+    "gravity_anomaly_strength": 0.66,
+    "metallurgical_recovery": 0.92,
+    "twin_hole_match": 0.68
+  },
+  "commercial": {
+    "metal_price_deck": 0.8,
+    "cash_cost_ratio": 0.55,
+    "permitting_status": 0.6,
+    "mine_plan_approved": false,
+    "feasibility_study_level": "PFS",
+    "social_license": 0.65
+  },
+  "price_deck": {
+    "gold_usd_per_oz": 2400.0
+  },
+  "checklist_state": {
+    "prms_classification": false,
+    "qp_report": false,
+    "qra_audit": false
+  },
+  "monetization_gates": {
+    "gate_1": {
+      "label": "Indicated → Probable conversion (mine plan + PFS economics)",
+      "token_action": "Open Reg D 506(c) tranche on Probable reserve basis"
+    },
+    "gate_2": {
+      "label": "Measured → Proven (infill drilling + FS)",
+      "token_action": "Expand ERC-3643 register · primary-revenue token"
+    },
+    "gate_3": {
+      "label": "Inferred resource (exploration upside)",
+      "token_action": "Exploration tranche · milestone tokens only — no economic use (CIM)"
+    }
+  },
+  "qp_required": true,
+  "stack": ["TELPAI-Q", "AutoQMS", "TradeProto", "DragonSeal", "ERC-3643"]
+}

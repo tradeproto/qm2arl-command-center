@@ -1,0 +1,100 @@
+# AutoQMS — Division 13: NI 43-101 / CIM Qualified Person (QP) Minerals Audit Agents
+# 8 agents covering the NI 43-101 Technical Report (Form 43-101F1) and CIM
+# Definition Standards (2014). Minerals analogue of Division 12 (SPE-PRMS).
+# RWA tokenization audit trail via Dragon Seal + Trade Proto proof chain.
+# Run: python simulations/compliance_audit.py configs/compliance_ni43101.yaml
+
+experiment_name: "autoqms_ni43101_v1"
+environment_type: compliance
+compliance_preset: ni43101
+
+num_agents: 8
+max_steps: 350
+
+# Compliance targets (NI 43-101 / CIM QP audit readiness for minerals RWA)
+#   geology_deposit_model:               0.93  (Items 6-8 geology, deposit type)
+#   drilling_exploration:                0.92  (Items 9-10 drilling, exploration)
+#   sampling_qaqc:                       0.94  (Items 11-12 sample prep, QA/QC, verification)
+#   mineral_resource_estimate:           0.93  (Item 14 resource estimation + classification)
+#   mineral_reserve_modifying_factors:   0.90  (Item 15 reserves + modifying factors)
+#   metallurgy_recovery:                 0.91  (Item 13 metallurgical testwork, recovery)
+#   economic_analysis:                   0.90  (Items 18-22 capex/opex, NPV/IRR, cutoff grade)
+#   qp_attestation_tokenization:         0.93  (QP certificate/consent + on-chain attestation)
+compliance_targets: [0.93, 0.92, 0.94, 0.93, 0.90, 0.91, 0.90, 0.93]
+compliance_init:    [0.34, 0.31, 0.30, 0.29, 0.24, 0.30, 0.26, 0.23]
+
+compliance_min: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+compliance_max: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+minimise_indices: []
+
+coupling_strength: 1.35
+
+stress_amplitude: 0.022
+stress_period: 50.0
+degradation_rate: 0.004
+
+invest_rate: 0.045
+extract_rate: 0.032
+explore_noise: 0.02
+
+target_penalty_scale: 0.075
+target_penalty_cap: 6.5
+stability_bonus: 0.42
+stability_sigma: 0.11
+explore_info_gain: 0.52
+harmony_scale: 0.14
+
+learning: true
+num_episodes: 120
+use_topology: true
+per_agent_policy_heads: true
+learning_rate: 0.002
+gamma: 0.99
+reward_scale: 0.01
+reward_clip: 10.0
+return_clip: 5.0
+epsilon_start: 0.6
+epsilon_end: 0.05
+epsilon_decay_episodes: 0
+seed: 42
+
+sparsity_target: 0.25
+max_hops: 2
+memory_capacity: 1000
+prune_threshold: 0.5
+
+quantum_kernel_enabled: true
+quantum_kernel_feature_dim: 8
+quantum_kernel_gamma: 0.5
+quantum_kernel_ref_path: "results/autoqms_ni43101_kernel_ref.npy"
+quantum_kernel_ref_update_every: 10
+quantum_kernel_ref_max: 200
+quantum_kernel_anomaly_bonus_scale: 0.02
+quantum_kernel_every_n_steps: 5
+quantum_kernel_ref_sample_max: 64
+quantum_kernel_harmony_ref_sample_max: 64
+
+use_vqc_feature_map: true
+vqc_seed: 42
+vqc_max_wires: 8
+vqc_backend: "bluequbit.cpu"
+
+quantum_kernel_harmony_ref_enabled: true
+quantum_kernel_harmony_ref_path: "results/autoqms_ni43101_harmony_ref.npy"
+quantum_kernel_harmony_ref_max: 200
+quantum_kernel_harmony_bonus_scale: 0.01
+quantum_kernel_harmony_update_threshold: 0.005
+
+engram_kernel_prune_enabled: true
+engram_kernel_similarity_threshold: 0.90
+
+resume_training: true
+training_checkpoint_path: results/autoqms_ni43101_checkpoint.pt
+checkpoint_every_episodes: 1
+training_checkpoint_remove_on_complete: true
+
+quantum_entropy_threshold: 0.42
+quantum_threshold_bonus_scale: 0.0
+use_ibm_quantum: false
+use_wandb: false

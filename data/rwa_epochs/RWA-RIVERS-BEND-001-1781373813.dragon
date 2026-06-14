@@ -1,0 +1,137 @@
+{
+  "version": "1.0",
+  "format": "dragon",
+  "header": {
+    "magic": "DRGN",
+    "type": "RWA_ORACLE_EPOCH",
+    "chain": "ethereum:sepolia",
+    "created": "2026-06-13T18:03:33.238051+00:00",
+    "platform": "TELPAI-Q x AutoQMS x DragonSeal"
+  },
+  "document": {
+    "name": "RWA-RIVERS-BEND-001-1781373813.epoch.json",
+    "asset_id": "RWA-RIVERS-BEND-001",
+    "type": "RWA-ORACLE-EPOCH",
+    "standard": "SPE-PRMS-2018",
+    "reserve_category": "probable_2p",
+    "certainty_pct": 34.0,
+    "verification": {
+      "verification_score": 0.9878,
+      "anomaly_score": 0.0122,
+      "confidence_band": "high",
+      "backend": "default.qubit",
+      "quantum_hardware": false,
+      "feature_vector": [
+        0.82,
+        0.7,
+        0.75,
+        0.75,
+        0.4647,
+        0.5753,
+        0.4525,
+        0.68
+      ],
+      "reference_set_size": 3,
+      "method": "quantum_kernel_geospatial_verification",
+      "notes": [
+        "Quantum-kernel verification is supplementary geophysical evidence; QRE (oil & gas) or QP (minerals) sign-off remains mandatory.",
+        "Signature added to verified reference set (score 0.99 >= 0.72)."
+      ]
+    },
+    "hash": "sha256:16088a84471564ceead9ed8561c67674f399717da50e3ce9a9d56228b1fc86eb",
+    "seal_id": "DS-RWA-16088A844715",
+    "organization": "Green Horizon Innovation LLC (SDVOSB)"
+  },
+  "signer": {
+    "name": "Joshua Spooner",
+    "role": "Principal \u2014 Green Horizon Innovation LLC (SDVOSB)",
+    "entity": "Green Horizon Innovation LLC (SDVOSB)",
+    "date": "2026-06-13"
+  },
+  "epoch": {
+    "epoch_id": "RWA-RIVERS-BEND-001-1781373813",
+    "asset_id": "RWA-RIVERS-BEND-001",
+    "timestamp_utc": "2026-06-13T18:03:33.237975+00:00",
+    "commodity": "oil_gas",
+    "standard": "SPE-PRMS-2018",
+    "sec_basis": "supplemental_only",
+    "reserve_category": "probable_2p",
+    "certainty_pct": 34.0,
+    "volumes": {
+      "p10_mmboe": 4.989,
+      "p50_mmboe": 7.865,
+      "p90_mmboe": 12.366,
+      "mean_mmboe": 8.376,
+      "samples": 10000
+    },
+    "quantum_verification": {
+      "verification_score": 0.9878,
+      "anomaly_score": 0.0122,
+      "confidence_band": "high",
+      "backend": "default.qubit",
+      "quantum_hardware": false,
+      "feature_vector": [
+        0.82,
+        0.7,
+        0.75,
+        0.75,
+        0.4647,
+        0.5753,
+        0.4525,
+        0.68
+      ],
+      "reference_set_size": 3,
+      "method": "quantum_kernel_geospatial_verification",
+      "notes": [
+        "Quantum-kernel verification is supplementary geophysical evidence; QRE (oil & gas) or QP (minerals) sign-off remains mandatory.",
+        "Signature added to verified reference set (score 0.99 >= 0.72)."
+      ]
+    },
+    "telpai_feeds": {
+      "status": "live",
+      "ggmplus": {
+        "status": "live"
+      },
+      "emag2": {
+        "status": "live"
+      },
+      "seepage": {
+        "status": "live",
+        "detected_seeps": 14,
+        "high_risk_seeps": 3
+      },
+      "firms": {
+        "status": "live",
+        "high_confidence_flares": 5
+      },
+      "boem": {
+        "status": "live",
+        "active_leases": 40
+      }
+    },
+    "reg_d_rule": "506c",
+    "compliance_stack": [
+      "TradeProto",
+      "ERC-3643",
+      "DragonSeal"
+    ],
+    "chain_target": "sepolia",
+    "sha256": "16088a84471564ceead9ed8561c67674f399717da50e3ce9a9d56228b1fc86eb",
+    "dragon_seal": {
+      "verify_url": "https://dragonseal.io/verify/16088a84471564ceead9ed8561c67674f399717da50e3ce9a9d56228b1fc86eb",
+      "status": "pending_anchor",
+      "method": "DragonSeal.attestDocument"
+    },
+    "erc3643": {
+      "compliance_module": "ModularCompliance",
+      "transfer_restrictions": "accredited_investors_reg_d"
+    },
+    "attestation_note": "QRE report hash must be co-sealed before primary Reg D 506(c) issuance."
+  },
+  "attestation": {
+    "status": "LOCAL_SEAL_READY",
+    "verify_url": "https://dragonseal.io/verify/16088a84471564ceead9ed8561c67674f399717da50e3ce9a9d56228b1fc86eb",
+    "method": "DragonSeal.attestDocument",
+    "note": "Pin to Lighthouse, then anchor on dragonseal.io (Sepolia)."
+  }
+}

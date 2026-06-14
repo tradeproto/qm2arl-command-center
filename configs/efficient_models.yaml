@@ -1,0 +1,35 @@
+# QM2ARL efficient-models config — "binary optimization + compiler" track.
+# Layer on top of any training config (compliance or engineering) by merging
+# these keys, or run directly with simulations that read the trainer flags.
+#
+# Each lever is independent and fail-safe (falls back to the standard
+# full-precision eager path if a dependency is missing).
+
+experiment_name: efficient_models_demo
+
+# Base RL knobs (small, for a quick efficiency demo)
+num_agents: 8
+num_episodes: 30
+max_steps: 120
+learning_rate: 0.001
+gamma: 0.99
+use_topology: true
+
+# ── Lever 1: COMPILE (torch.compile) ──────────────────────────────────────
+# Fuses the policy forward/backward into compiled kernels. "reduce-overhead"
+# is best for small, frequently-called nets like these policies.
+compile_policy: true
+compile_mode: reduce-overhead      # default | reduce-overhead | max-autotune
+
+# ── Lever 2: BINARIZE (Binarized Neural Network) ──────────────────────────
+# Sign-weight hidden layers ({-1,+1}) with straight-through estimator.
+# ~32x smaller hidden weights. Keep a full-precision reference run for NQA-1.
+binarized_policy: false            # set true for the super-efficient BNN policy
+
+# ── Lever 3: SPARSIFY (post-training magnitude pruning) ───────────────────
+# Zero the smallest-|w| fraction after training. Pairs with quantization at
+# deploy time. 0.0 disables.
+prune_amount: 0.0                  # e.g. 0.5 for 50% sparsity
+
+# NOTE: int8 dynamic quantization is applied at DEPLOY/INFERENCE time via
+# src.efficient_models.dynamic_quantize_policy(), not during training.
