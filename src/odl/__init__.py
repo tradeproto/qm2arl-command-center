@@ -21,6 +21,22 @@ from .dimensions import (
     N_DIMENSIONS,
 )
 from .resonance import ResonanceState, compute_resonance
+from .harmonic import harmony_from_signals, HarmonyResult
+from .hyperdimensional import (
+    HDCSpace,
+    AssociativeMemory,
+    HyperLedgerMemory,
+    state_signature,
+    quantum_similarity,
+    fingerprint,
+)
+from .feeds import (
+    SignalBuffer,
+    collect_live_signals,
+    poll_once,
+    harmony_from_live,
+    live_harmonic_signals,
+)
 from .ledger import OmniDimensionalLedger
 from .governance import ValueGovernor, GovernanceVerdict, VALUE_FLOORS
 from .engine import SystemResonanceEngine
@@ -32,6 +48,19 @@ __all__ = [
     "N_DIMENSIONS",
     "ResonanceState",
     "compute_resonance",
+    "harmony_from_signals",
+    "HarmonyResult",
+    "HDCSpace",
+    "AssociativeMemory",
+    "HyperLedgerMemory",
+    "state_signature",
+    "quantum_similarity",
+    "fingerprint",
+    "SignalBuffer",
+    "collect_live_signals",
+    "poll_once",
+    "harmony_from_live",
+    "live_harmonic_signals",
     "OmniDimensionalLedger",
     "ValueGovernor",
     "GovernanceVerdict",

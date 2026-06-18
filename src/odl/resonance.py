@@ -38,6 +38,7 @@ from typing import Any
 
 import numpy as np
 
+from .dimension_config import effective_targets, effective_weights
 from .dimensions import (
     DIMENSION_ORDER,
     N_DIMENSIONS,
@@ -47,6 +48,20 @@ from .dimensions import (
     weights_vector,
     Dimension,
 )
+
+
+def _weights() -> np.ndarray:
+    try:
+        return effective_weights()
+    except Exception:
+        return weights_vector()
+
+
+def _targets() -> np.ndarray:
+    try:
+        return effective_targets()
+    except Exception:
+        return targets_vector()
 
 
 @dataclass
@@ -143,8 +158,8 @@ def compute_resonance(
     """
     backend = vqc_backend or os.environ.get("ODL_QUANTUM_BACKEND", "")
     a = to_vector(scores)
-    w = weights_vector()
-    t = targets_vector()
+    w = _weights()
+    t = _targets()
 
     magnitude = float(np.dot(w, a))
     rho = _kuramoto_order_parameter(a, t)

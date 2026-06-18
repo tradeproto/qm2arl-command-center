@@ -1,0 +1,112 @@
+{
+  "version": "1.0",
+  "format": "dragon",
+  "header": {
+    "magic": "DRGN",
+    "type": "RWA_ORACLE_EPOCH",
+    "chain": "ethereum:sepolia",
+    "created": "2026-06-16T02:37:08.816490+00:00",
+    "platform": "TELPAI-Q x AutoQMS x DragonSeal"
+  },
+  "document": {
+    "name": "ODL-000004-b84e5453c1b4.epoch.json",
+    "asset_id": "system",
+    "type": "RWA-ORACLE-EPOCH",
+    "standard": "Omni-Dimensional-Ledger/0.1",
+    "reserve_category": "RESONANT",
+    "certainty_pct": 83.2,
+    "verification": {
+      "system_resonance": 0.8321,
+      "magnitude": 0.8533,
+      "phase_coherence": 0.9522,
+      "quantum_coherence": 0.9981,
+      "hmu": null,
+      "verdict": "RESONANT",
+      "dimensions": {
+        "prosperity": 0.9,
+        "planet": 0.8,
+        "equity": 0.75,
+        "health": 0.8,
+        "knowledge": 0.9076,
+        "connection": 0.9808
+      },
+      "binding_dimension": "equity",
+      "binding_value": 0.75,
+      "backend": "default.qubit",
+      "coverage": {
+        "measured": [
+          "prosperity",
+          "knowledge",
+          "connection"
+        ],
+        "missing": [
+          "planet",
+          "equity",
+          "health"
+        ],
+        "coverage_pct": 50.0
+      },
+      "notes": [
+        "Uncovered dimensions defaulted to target: planet, equity, health."
+      ]
+    },
+    "hash": "sha256:b84e5453c1b4eefaab1cf47f0b526ac36335760fd7a55c208906e8f4565a1acf",
+    "seal_id": "DS-RWA-B84E5453C1B4",
+    "organization": "Green Horizon Innovation LLC (SDVOSB)"
+  },
+  "signer": {
+    "name": "Joshua Spooner",
+    "role": "Principal \u2014 Green Horizon Innovation LLC (SDVOSB)",
+    "entity": "Green Horizon Innovation LLC (SDVOSB)",
+    "date": "2026-06-16"
+  },
+  "epoch": {
+    "epoch_id": "ODL-000004-b84e5453c1b4",
+    "asset_id": "system",
+    "sha256": "b84e5453c1b4eefaab1cf47f0b526ac36335760fd7a55c208906e8f4565a1acf",
+    "standard": "Omni-Dimensional-Ledger/0.1",
+    "reserve_category": "RESONANT",
+    "certainty_pct": 83.2,
+    "quantum_verification": {
+      "system_resonance": 0.8321,
+      "magnitude": 0.8533,
+      "phase_coherence": 0.9522,
+      "quantum_coherence": 0.9981,
+      "hmu": null,
+      "verdict": "RESONANT",
+      "dimensions": {
+        "prosperity": 0.9,
+        "planet": 0.8,
+        "equity": 0.75,
+        "health": 0.8,
+        "knowledge": 0.9076,
+        "connection": 0.9808
+      },
+      "binding_dimension": "equity",
+      "binding_value": 0.75,
+      "backend": "default.qubit",
+      "coverage": {
+        "measured": [
+          "prosperity",
+          "knowledge",
+          "connection"
+        ],
+        "missing": [
+          "planet",
+          "equity",
+          "health"
+        ],
+        "coverage_pct": 50.0
+      },
+      "notes": [
+        "Uncovered dimensions defaulted to target: planet, equity, health."
+      ]
+    }
+  },
+  "attestation": {
+    "status": "LOCAL_SEAL_READY",
+    "verify_url": "https://dragonseal.io/verify/b84e5453c1b4eefaab1cf47f0b526ac36335760fd7a55c208906e8f4565a1acf",
+    "method": "DragonSeal.attestDocument",
+    "note": "Pin to Lighthouse, then anchor on dragonseal.io (Sepolia)."
+  }
+}

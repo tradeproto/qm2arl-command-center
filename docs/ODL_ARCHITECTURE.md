@@ -215,7 +215,14 @@ coherent, verifiable state.
 ```bash
 python -m src.odl                      # System Resonance cycle from live platform signals
 python -m src.odl --seal               # also Dragon Seal the head epoch
+python -m src.odl --anchor-dry-run     # validate on-chain anchor config (no broadcast)
+python -m src.odl --anchor             # attest head epoch on-chain (needs DRAGON_SEAL_* env)
 python -m src.odl --backend bluequbit.cpu   # quantum coherence on BlueQubit cloud
+
+# Dashboard (live resonance + ODL Brain + ledger explorer)
+streamlit run odl-app/app.py --server.port 8504
+# API: GET /odl/brain · GET /odl/brain/graph · GET/PUT /odl/dimensions
+#      GET /odl/resonance · POST /odl/step · POST /odl/anchor (api_server :8000)
 ```
 
 ```python

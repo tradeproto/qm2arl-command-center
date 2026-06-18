@@ -16,6 +16,8 @@ from .dimensions import DIMENSION_SPECS
 def main() -> int:
     ap = argparse.ArgumentParser(description="Omni-Dimensional Ledger — System Resonance")
     ap.add_argument("--seal", action="store_true", help="Dragon Seal the head epoch")
+    ap.add_argument("--anchor", action="store_true", help="On-chain attest head epoch (DragonSeal)")
+    ap.add_argument("--anchor-dry-run", action="store_true", help="Validate anchor config without broadcasting")
     ap.add_argument("--backend", default="", help="quantum backend (e.g. bluequbit.cpu)")
     ap.add_argument("--tier", default="GAI", choices=["GAI", "SAI"])
     args = ap.parse_args()
@@ -27,6 +29,9 @@ def main() -> int:
 
     eng = SystemResonanceEngine(governor_tier=args.tier, vqc_backend=args.backend)
     out = eng.step(seal=args.seal)
+    if args.anchor or args.anchor_dry_run:
+        from .anchor import anchor_epoch
+        out["anchor"] = anchor_epoch(out["epoch"], dry_run=args.anchor_dry_run or not args.anchor)
 
     r = out["resonance"]
     g = out["governance"]
@@ -53,6 +58,13 @@ def main() -> int:
     print(f"  chain integrity: {'VALID' if chain['valid'] else 'BROKEN'} (height {chain.get('height')})")
     if out.get("dragon_seal"):
         print(f"  dragon seal: {out['dragon_seal'].get('seal_id')} [{out['dragon_seal'].get('status')}]")
+    if out.get("anchor"):
+        a = out["anchor"]
+        print(f"  anchor: {a.get('status')}")
+        if a.get("tx_hash"):
+            print(f"  tx: {a.get('explorer_url')}")
+        if a.get("reason"):
+            print(f"  anchor note: {a.get('reason')}")
 
     for n in r["notes"]:
         print(f"  note: {n}")

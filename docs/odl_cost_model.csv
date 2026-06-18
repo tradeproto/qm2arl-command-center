@@ -1,0 +1,45 @@
+section,wbs,line_item,layer_or_category,build_status,unit,quantity,rate_basis,low,expected,high,flag,notes
+INFRA_OPEX_MONTHLY,2.0,LLM reasoning (Grok pluggable),Optimization & AI,partial,usd_per_month,1,vendor,50,200,800,,
+INFRA_OPEX_MONTHLY,3.0,BlueQubit gate cloud,Quantum Compute,partial,usd_per_month,1,vendor,200,600,2500,vendor-confirmation-required,
+INFRA_OPEX_MONTHLY,3.0,D-Wave Leap annealing (optional),Quantum Compute,to_build,usd_per_month,1,vendor,0,0,2000,vendor-confirmation-required,optional
+INFRA_OPEX_MONTHLY,3.0,IBM Quantum (optional eval),Quantum Compute,to_build,usd_per_month,1,vendor,0,0,1500,vendor-confirmation-required,optional
+INFRA_OPEX_MONTHLY,4.0,Oracle node service,Oracle & Verification,partial,usd_per_month,1,estimate,24,60,200,,
+INFRA_OPEX_MONTHLY,5.0,Lighthouse IPFS/Filecoin,Proof,partial,usd_per_month,1,vendor,50,150,400,,
+INFRA_OPEX_MONTHLY,5.0,zK prover (RISC Zero/SP1 service),Proof,to_build,usd_per_month,1,vendor,100,500,2000,vendor-confirmation-required,
+INFRA_OPEX_MONTHLY,6.0,Sealer/validator node,Ledger & Consensus,to_build,usd_per_month,1,estimate,48,120,400,,
+INFRA_OPEX_MONTHLY,7.0,Working index (Postgres),Storage & Data,to_build,usd_per_month,1,estimate,50,120,400,,
+INFRA_OPEX_MONTHLY,7.0,Object store,Storage & Data,partial,usd_per_month,1,estimate,20,80,300,,
+INFRA_OPEX_MONTHLY,7.0,Data availability (Celestia/EigenDA),Storage & Data,to_build,usd_per_month,1,vendor,0,0,600,vendor-confirmation-required,optional
+INFRA_OPEX_MONTHLY,9.0,Cloud VMs (DigitalOcean prod),Hardware,operational,usd_per_month,1,vendor,48,150,600,,
+INFRA_OPEX_MONTHLY,9.0,Cloud GPU (on-demand alt to CapEx),Hardware,to_build,usd_per_month,1,vendor,300,900,2500,vendor-confirmation-required,alt-to-gpu-capex
+INFRA_OPEX_MONTHLY,10.0,On-chain anchor (Base L2 batched),On-chain,to_build,usd_per_month,1,estimate,10,30,150,,
+INFRA_OPEX_MONTHLY,10.0,Monitoring/logging/backups/TLS,On-chain,partial,usd_per_month,1,estimate,50,120,400,,
+INFRA_OPEX_MONTHLY,,Infra OpEx rollup (monthly),,,usd_per_month,1,sum,950,3030,14750,,reconciles-to-class5
+LICENSES_ANNUAL,,SolidWorks,Licenses,,usd_per_year,1,vendor,4000,4000,4000,,
+LICENSES_ANNUAL,,Misc dev tools,Licenses,,usd_per_year,1,estimate,1500,1500,1500,,
+LICENSES_ANNUAL,,Licenses total,Licenses,,usd_per_year,1,sum,5500,5500,5500,,
+CAPEX_ONETIME,9.0,Dev workstation (Linux main),Hardware,operational,usd,1,vendor,2000,3000,5000,,likely-owned
+CAPEX_ONETIME,9.0,Office server (Linux services),Hardware,partial,usd,1,vendor,2000,3000,6000,,
+CAPEX_ONETIME,9.0,GPU prover/trainer node,Hardware,to_build,usd,1,vendor,8000,12000,22000,,swing-item-vs-cloud-gpu
+CAPEX_ONETIME,9.0,Windows SolidWorks station,Hardware,partial,usd,1,vendor,2000,2800,4500,,
+CAPEX_ONETIME,,CapEx rollup (one-time),,,usd,1,sum,14000,20800,37500,,reconciles-to-class5
+LABOR_RATECARD,11.0,zK/protocol engineer (loaded annual),Labor,,usd_per_year,1,base200k_x1.40,245000,280000,330000,,burden-1.40x
+LABOR_RATECARD,11.0,Backend/infra engineer (loaded annual),Labor,,usd_per_year,1,base165k_x1.40,200000,231000,275000,,burden-1.40x
+LABOR_RATECARD,11.0,ML/quantum engineer (loaded annual),Labor,,usd_per_year,1,base190k_x1.40,235000,266000,315000,,burden-1.40x
+LABOR_RATECARD,11.0,Frontend engineer (loaded annual),Labor,,usd_per_year,1,base150k_x1.40,180000,210000,245000,,burden-1.40x
+LABOR_RATECARD,11.0,SRE/devops (loaded annual),Labor,,usd_per_year,1,base165k_x1.40,200000,231000,275000,,phase3
+LABOR_RATECARD,11.0,PM/ops (loaded annual),Labor,,usd_per_year,1,base150k_x1.40,180000,210000,245000,,phase3-0.5fte
+LABOR_PHASE_RUNRATE,11.0,Phase 1 labor (1.5 FTE annual),Labor,,usd_per_year,1,headcount,290000,364000,455000,,1.0 backend + 0.5 ML
+LABOR_PHASE_RUNRATE,11.0,Phase 2 labor (3.5 FTE annual),Labor,,usd_per_year,1,headcount,705000,882000,1100000,,1 zK + 1 backend + 1 ML + 0.5 FE
+LABOR_PHASE_RUNRATE,11.0,Phase 3 labor (6.5 FTE annual),Labor,,usd_per_year,1,headcount,1245000,1554000,1945000,,1 zK + 2 backend + 1 ML + 1 FE + 1 SRE + 0.5 PM
+PHASE_TCO,P1,Phase 1 Pilot total (9 mo),Phase,,usd,1,rollup,225900,287900,370900,,
+PHASE_TCO,P2,Phase 2 Operational total (15 mo),Phase,,usd,1,rollup,933700,1202400,1581900,,
+PHASE_TCO,P3,Phase 3 Scaled total (12 mo),Phase,,usd,1,rollup,1414500,1919500,2870500,,
+PROGRAM_TCO,,Base 3-year TCO,Program,,usd,1,sum,2580000,3410000,4820000,,component-envelope
+PROGRAM_TCO,,Contingency @15% (on expected),Program,,usd,1,pct,0,511000,0,,
+PROGRAM_TCO,,Contingency-loaded TCO,Program,,usd,1,sum,3140000,3920000,5100000,,AACE-class3-band-minus20-plus30
+SENSITIVITY,S1,Headcount/wage (Phase 2-3),Driver,,usd_swing,1,plus-minus,-900000,0,900000,,rank1-largest
+SENSITIVITY,S2,Phase-3 scaling intensity (infra),Driver,,usd_swing,1,plus-minus,-290000,0,290000,,rank2
+SENSITIVITY,S3,GPU/zK proving path (self-host vs cloud),Driver,,usd_swing,1,plus-minus,-70000,0,70000,vendor-confirmation-required,rank3
+SENSITIVITY,S4,Quantum cloud usage,Driver,,usd_swing,1,plus-minus,-60000,0,60000,vendor-confirmation-required,rank4
+SENSITIVITY,S5,On-chain path (Base L2 vs Ethereum L1),Driver,,usd_swing,1,plus-minus,-40000,0,40000,,rank5

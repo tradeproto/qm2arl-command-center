@@ -1,0 +1,51 @@
+# Omni-Dimensional Ledger — dimension registry (editable via ODL Brain / API)
+# Overrides merge on top of src/odl/dimensions.py defaults at runtime.
+version: "0.1"
+
+signal_map:
+  prosperity:
+    path_patterns: ["rwa_assets", "rwa/", "tradeproto", "reserve", "prms", "tokeniz"]
+    projects: ["tradeproto", "qm2arl"]
+    result_files: ["data/rwa_assets.json"]
+  planet:
+    path_patterns: ["co2", "geothermal", "materials", "geopolymer", "flash_joule", "emag2", "power_system"]
+    projects: ["qm2arl", "ghi", "telpai"]
+    result_files: []
+  equity:
+    path_patterns: ["iso_42001", "governance", "compliance", "equity", "cmmc"]
+    projects: ["qm2arl", "autoqms"]
+    result_files: []
+  health:
+    path_patterns: ["clinical", "quantum_health", "nqa1", "safety", "skinproto", "ich-gcp"]
+    projects: ["qm2arl"]
+    result_files: ["results/autoqms_clinical_trials_training_summary.json"]
+  knowledge:
+    path_patterns: ["autoqms", "compliance", "audit", "nqa1", "ni43101", "spe_prms", "qms", "odl"]
+    projects: ["qm2arl", "documents"]
+    result_files:
+      - "results/autoqms_iso_qms_training_summary.json"
+      - "results/autoqms_nqa1_training_summary.json"
+      - "results/autoqms_spe_prms_training_summary.json"
+      - "results/autoqms_ni43101_training_summary.json"
+      - "results/autoqms_clinical_trials_training_summary.json"
+  connection:
+    path_patterns: ["harmony", "hmu", "coupling", "qm2arl_trainer", "resonance"]
+    projects: ["qm2arl"]
+    result_files: ["results/autoqms_spe_prms_training_summary.json"]
+
+# Cross-dimension coupling (symmetric); used for Brain heatmap visualization.
+# Negative = tension (e.g. prosperity vs planet); positive = reinforcement.
+dimension_coupling:
+  prosperity:  { planet: -0.14, equity: 0.06, health: 0.05, knowledge: 0.08, connection: 0.04 }
+  planet:      { equity: 0.10, health: 0.12, knowledge: 0.06, connection: 0.05 }
+  equity:      { health: 0.11, knowledge: 0.09, connection: 0.14 }
+  health:      { knowledge: 0.07, connection: 0.10 }
+  knowledge:   { connection: 0.18 }
+
+overrides: {}
+# Example override (uncomment to test):
+# overrides:
+#   planet:
+#     target: 0.82
+#     weight: 1.2
+#     floor: 0.48

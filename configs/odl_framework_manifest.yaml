@@ -1,0 +1,336 @@
+# Omni-Dimensional Ledger (ODL) — Framework Suite Manifest
+# Machine-readable build + cost blueprint. Read by src/odl/nodes.py to roll up
+# build-completion % and operating cost.
+#
+# COST DISCLAIMER: all figures are AACE Class 5 (concept-screening) ESTIMATES,
+# accuracy roughly -50% / +100%. monthly_usd is recurring OpEx; capex_usd is
+# one-time. Quantum-cloud and zK-proving-service prices must be confirmed with
+# vendors before any commitment. Personnel (the dominant real cost) is tracked
+# separately in `labor`, not in the infra rollup.
+
+meta:
+  name: "Omni-Dimensional Ledger — Framework Suite"
+  version: "0.1"
+  estimate_class: "AACE Class 5 (concept screening, -50% / +100%)"
+  basis: "QM2ARL repo (src/odl, src/telpai_rwa, src/quantum_health, AutoQMS)"
+  build_status_legend:
+    operational: "Running today, reproducible in-repo"
+    partial: "Core built; hardening / external dependency / scale work remains"
+    to_build: "Designed/spec'd; not yet implemented"
+
+# ──────────────────────────────────────────────────────────────────────────
+# 8-layer architecture
+# ──────────────────────────────────────────────────────────────────────────
+layers:
+  - id: 1
+    name: "Value & Resonance"
+    summary: "Trinity Value Matrix → N-dimensional value space; System Resonance kernel"
+  - id: 2
+    name: "Optimization & AI"
+    summary: "QM2ARL multi-agent RL; Divisions 10–14 audit agents; General AI governor"
+  - id: 3
+    name: "Quantum Compute"
+    summary: "VQC quantum kernel + annealing on the BlueQubit/D-Wave/IBM ladder"
+  - id: 4
+    name: "Oracle & Verification"
+    summary: "TELPAI-Q geospatial verification + government/geo/AI data feeds"
+  - id: 5
+    name: "Proof"
+    summary: "zK proofs of the resonance computation + DragonSeal attestation"
+  - id: 6
+    name: "Ledger & Consensus"
+    summary: "Append-only hash-linked resonance chain; sealer/validator set"
+  - id: 7
+    name: "Storage & Data"
+    summary: "Working index (Postgres), state DB, IPFS/Filecoin permanence, data availability"
+  - id: 8
+    name: "Access & Gateway"
+    summary: "APIs, AutoQMS, RWA onboarding console, ODL dashboard"
+
+# ──────────────────────────────────────────────────────────────────────────
+# Components — each rolls into build-completion % and cost
+# build_status: operational | partial | to_build
+# monthly_usd / capex_usd: {low, expected, high} (USD); omit if zero
+# ──────────────────────────────────────────────────────────────────────────
+components:
+  # Layer 1 — Value & Resonance
+  - id: resonance_kernel
+    layer: 1
+    build_status: operational
+    repo: "src/odl/resonance.py"
+    note: "Kuramoto phase coherence + quantum-kernel coherence + Hμ fusion"
+  - id: value_dimensions
+    layer: 1
+    build_status: operational
+    repo: "src/odl/dimensions.py"
+    note: "6 value axes (Prosperity, Planet, Equity, Health, Knowledge, Connection)"
+  - id: value_governor_gai
+    layer: 1
+    build_status: operational
+    repo: "src/odl/governance.py"
+    note: "General AI value-floor governor (HALT/REBALANCE/PROCEED)"
+  - id: value_governor_sai
+    layer: 1
+    build_status: to_build
+    note: "Super AI autonomous re-allocation tier — interface exists; ASPIRATIONAL"
+
+  # Layer 2 — Optimization & AI
+  - id: qm2arl_agents
+    layer: 2
+    build_status: operational
+    repo: "src/qm2arl_trainer.py"
+  - id: divisions_10_14
+    layer: 2
+    build_status: operational
+    repo: "src/compliance_env.py, src/quantum_health, src/telpai_rwa/division12.py, division13.py"
+    note: "ISO, NQA-1, SPE-PRMS, NI 43-101, Clinical Trials audit agents"
+  - id: efficiency_layer
+    layer: 2
+    build_status: operational
+    repo: "src/efficient_models.py"
+    note: "Binarized/quantized policies + compile + prune for scale/edge"
+  - id: llm_reasoning_access
+    layer: 2
+    build_status: partial
+    external: "xAI Grok (topology + assistant); pluggable"
+    monthly_usd: {low: 50, expected: 200, high: 800}
+
+  # Layer 3 — Quantum Compute
+  - id: quantum_kernel_sim
+    layer: 3
+    build_status: operational
+    repo: "src/quantum_geospatial.py"
+    note: "8-wire VQC kernel; classically simulable today (no advantage claim)"
+  - id: bluequbit_cloud
+    layer: 3
+    build_status: partial
+    external: "BlueQubit gate cloud (BLUEQUBIT_API_TOKEN); SDK installed, net access needed"
+    monthly_usd: {low: 200, expected: 600, high: 2500}
+  - id: dwave_annealing
+    layer: 3
+    build_status: to_build
+    external: "D-Wave Leap — optional; cooperative scheduling at combinatorial scale"
+    monthly_usd: {low: 0, expected: 0, high: 2000}
+  - id: ibm_quantum
+    layer: 3
+    build_status: to_build
+    external: "IBM Quantum — optional hardware eval"
+    monthly_usd: {low: 0, expected: 0, high: 1500}
+
+  # Layer 4 — Oracle & Verification
+  - id: telpai_q_verify
+    layer: 4
+    build_status: operational
+    repo: "src/telpai_rwa/quantum_verify.py"
+  - id: data_feeds
+    layer: 4
+    build_status: operational
+    repo: "src/telpai_rwa/telpai_feeds.py, api_server.py"
+    note: "BOEM, USGS, EIA, NOAA EMAG2, NASA POWER/FIRMS, ESA Swarm, GGMplus"
+  - id: oracle_node_service
+    layer: 4
+    build_status: partial
+    note: "Feed scheduler + retry/caching + signing — needs hardening for 24/7"
+    monthly_usd: {low: 24, expected: 60, high: 200}
+
+  # Layer 5 — Proof
+  - id: dragon_seal
+    layer: 5
+    build_status: partial
+    repo: "src/telpai_rwa/dragon_seal.py, src/odl/anchor.py"
+    note: "Local seal + Python anchor module ready; broadcast when wallet/contract env set"
+  - id: odl_anchor
+    layer: 5
+    build_status: partial
+    repo: "src/odl/anchor.py, dragon_seal_nft/scripts/attest-document.js"
+    note: "attestDocument on Sepolia/Base; records in data/odl_anchors.jsonl"
+  - id: lighthouse_ipfs
+    layer: 5
+    build_status: partial
+    repo: "scripts/lighthouse_pin.py"
+    external: "Lighthouse (IPFS+Filecoin); API key needed"
+    monthly_usd: {low: 50, expected: 150, high: 400}
+  - id: zk_prover
+    layer: 5
+    build_status: to_build
+    external: "RISC Zero zkVM or SP1 (prove resonance compute off-chain)"
+    note: "Prove Kuramoto+kernel computation; verify succinctly on-chain"
+    monthly_usd: {low: 100, expected: 500, high: 2000}
+    capex_usd: {low: 0, expected: 0, high: 0}
+  - id: zk_verifier_contract
+    layer: 5
+    build_status: to_build
+    external: "On-chain verifier contract (Base/Ethereum)"
+
+  # Layer 6 — Ledger & Consensus
+  - id: odl_chain
+    layer: 6
+    build_status: partial
+    repo: "src/odl/ledger.py"
+    note: "Append-only hash-linked chain w/ integrity verify; local single-writer today"
+  - id: sealer_validator_node
+    layer: 6
+    build_status: to_build
+    note: "Validator/sequencer that signs + anchors epochs"
+    monthly_usd: {low: 48, expected: 120, high: 400}
+  - id: consensus_layer
+    layer: 6
+    build_status: to_build
+    note: "Decision: single-sequencer (now) → L2 rollup or multi-validator (scale)"
+
+  # Layer 7 — Storage & Data
+  - id: working_index_postgres
+    layer: 7
+    build_status: to_build
+    note: "Migrate SQLite (autoqms-app/db.py) → managed Postgres feature store"
+    monthly_usd: {low: 50, expected: 120, high: 400}
+  - id: object_store
+    layer: 7
+    build_status: partial
+    note: "IPFS/Filecoin via Lighthouse for blobs; cloud object store for working set"
+    monthly_usd: {low: 20, expected: 80, high: 300}
+  - id: state_db
+    layer: 7
+    build_status: to_build
+    note: "Merkle/Verkle trie over RocksDB/LMDB for verifiable state roots"
+  - id: data_availability
+    layer: 7
+    build_status: to_build
+    external: "Celestia or EigenDA — optional for decentralized DA"
+    monthly_usd: {low: 0, expected: 0, high: 600}
+
+  # Layer 8 — Access & Gateway
+  - id: api_server
+    layer: 8
+    build_status: operational
+    repo: "api_server.py (FastAPI, /rwa/* + /data/*)"
+  - id: autoqms_app
+    layer: 8
+    build_status: operational
+    repo: "autoqms-app/app.py"
+  - id: rwa_onboarding_console
+    layer: 8
+    build_status: operational
+    repo: "rwa-onboarding/app.py"
+  - id: odl_dashboard
+    layer: 8
+    build_status: operational
+    repo: "odl-app/app.py, scripts/run_odl_dashboard.sh"
+    note: "Streamlit :8504 — live resonance, ledger explorer, framework status"
+  - id: odl_api
+    layer: 8
+    build_status: operational
+    repo: "src/odl/api_routes.py"
+    note: "FastAPI /odl/* mounted on api_server"
+
+# ──────────────────────────────────────────────────────────────────────────
+# Programmable node types (the running daemons of the network)
+# ──────────────────────────────────────────────────────────────────────────
+node_types:
+  - id: resonance_node
+    role: "Compute System Resonance from signals; emit resonance state"
+    build_status: operational
+    impl: "src/odl/engine.py"
+  - id: oracle_node
+    role: "Ingest data feeds, run TELPAI-Q verification, sign observations"
+    build_status: partial
+    impl: "src/telpai_rwa/*"
+  - id: prover_node
+    role: "Generate zK proofs of resonance/audit computations"
+    build_status: to_build
+    impl: "RISC Zero / SP1 (planned)"
+  - id: sealer_validator_node
+    role: "Validate, hash-link, DragonSeal, and anchor epochs on-chain"
+    build_status: partial
+    impl: "src/odl/ledger.py + dragon_seal (anchor pending)"
+  - id: indexer_node
+    role: "Index epochs + documents into Postgres/Graph for query"
+    build_status: to_build
+  - id: governor_node
+    role: "General AI value-floor governance; HALT/REBALANCE/PROCEED"
+    build_status: operational
+    impl: "src/odl/governance.py"
+  - id: archive_node
+    role: "Pin epochs + evidence to IPFS/Filecoin for permanence"
+    build_status: partial
+    impl: "scripts/lighthouse_pin.py"
+  - id: gateway_node
+    role: "Serve APIs + UIs to clients/partners"
+    build_status: operational
+    impl: "api_server.py, autoqms-app, rwa-onboarding"
+
+# ──────────────────────────────────────────────────────────────────────────
+# Hardware tiers
+# ──────────────────────────────────────────────────────────────────────────
+hardware:
+  - id: dev_workstation
+    role: "Linux main — development, simulation, agent training"
+    build_status: operational
+    capex_usd: {low: 2000, expected: 3000, high: 5000}
+  - id: office_server
+    role: "Linux services node — APIs, ledger, Postgres, oracle daemons"
+    build_status: partial
+    capex_usd: {low: 2000, expected: 3000, high: 6000}
+  - id: gpu_prover_trainer
+    role: "GPU node — RL training, quantum sim, zK proving"
+    build_status: to_build
+    capex_usd: {low: 8000, expected: 12000, high: 22000}
+    note: "Alt: rent cloud A100/H100 instead of capex (see opex gpu_compute_cloud)"
+  - id: windows_solidworks_station
+    role: "Windows box for Chapman SolidWorks (engineering loop)"
+    build_status: partial
+    capex_usd: {low: 2000, expected: 2800, high: 4500}
+    note: "+ SolidWorks license ~$4,000/yr (tracked in labor/licenses)"
+  - id: cloud_vms
+    role: "Production droplets/VMs (e.g. DigitalOcean 209.38.65.13 + nodes)"
+    build_status: operational
+    monthly_usd: {low: 48, expected: 150, high: 600}
+  - id: gpu_compute_cloud
+    role: "On-demand cloud GPU (alternative to capex gpu node)"
+    build_status: to_build
+    monthly_usd: {low: 300, expected: 900, high: 2500}
+
+# ──────────────────────────────────────────────────────────────────────────
+# On-chain + misc recurring
+# ──────────────────────────────────────────────────────────────────────────
+onchain:
+  - id: anchor_base
+    role: "Batched DragonSeal anchoring on Base L2 (cheap gas)"
+    build_status: to_build
+    monthly_usd: {low: 10, expected: 30, high: 150}
+  - id: monitoring_misc
+    role: "Logging, metrics, alerting, backups, domains/TLS"
+    build_status: partial
+    monthly_usd: {low: 50, expected: 120, high: 400}
+
+# ──────────────────────────────────────────────────────────────────────────
+# Labor (dominant real cost — NOT in the infra rollup, shown for planning)
+# ──────────────────────────────────────────────────────────────────────────
+labor:
+  note: "Engineering labor is the dominant cost; infra OpEx is comparatively small."
+  software_licenses_usd_per_year: {solidworks: 4000, misc_dev_tools: 1500}
+  suggested_team_phase2:
+    - "1 protocol/zK engineer (Rust, RISC Zero/SP1)"
+    - "1 backend/infra engineer (FastAPI, Postgres, nodes, devops)"
+    - "1 ML/quantum engineer (QM2ARL, PennyLane/BlueQubit)"
+    - "0.5 frontend (dashboards/consoles)"
+
+# ──────────────────────────────────────────────────────────────────────────
+# Phased build (cost envelopes are monthly OpEx unless noted)
+# ──────────────────────────────────────────────────────────────────────────
+phases:
+  - id: phase_1_pilot
+    name: "Phase 1 — Pilot (simulator-first, single region)"
+    scope: "Run resonance kernel + ledger + governor + RWA/clinical audits on existing cloud; local seal; quantum on sim/BlueQubit credits."
+    monthly_usd: {low: 600, expected: 1200, high: 2500}
+    capex_usd: {low: 0, expected: 0, high: 3000}
+  - id: phase_2_operational
+    name: "Phase 2 — Operational (multi-node, GPU proving, on-chain anchor)"
+    scope: "Postgres feature store, oracle daemon, sealer/validator, zK prover (cloud or GPU node), DragonSeal anchored on Base, ODL dashboard."
+    monthly_usd: {low: 2500, expected: 5000, high: 11000}
+    capex_usd: {low: 8000, expected: 18000, high: 35000}
+  - id: phase_3_scaled
+    name: "Phase 3 — Scaled / decentralized"
+    scope: "Multi-validator or L2 rollup, data availability layer, regional redundancy, edge TELPAI sensing."
+    monthly_usd: {low: 12000, expected: 25000, high: 60000}
+    capex_usd: {low: 20000, expected: 60000, high: 200000}
