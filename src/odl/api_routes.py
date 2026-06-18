@@ -21,6 +21,7 @@ from .anchor import anchor_config, anchor_epoch, anchor_for_hash, list_anchors
 from .brain import brain_state, build_brain_graph, coverage_honesty
 from .dimension_config import apply_overrides, coupling_matrix, list_dimensions
 from .engine import SystemResonanceEngine
+from .feeds import SignalBuffer, harmony_from_live, poll_once, synthesize_history
 from .ledger import OmniDimensionalLedger
 from .nodes import load_manifest, summarize
 
@@ -34,6 +35,9 @@ class StepRequest(BaseModel):
     pin_to_lighthouse: bool = False
     backend: str = ""
     tier: str = Field(default="GAI", pattern="^(GAI|SAI)$")
+    live_lat: float | None = None
+    live_lon: float | None = None
+    sample_rate_hz: float = 1.0
 
 
 class AnchorRequest(BaseModel):
@@ -119,7 +123,12 @@ def odl_anchors(limit: int = 50) -> dict[str, Any]:
 @router.post("/step")
 def odl_step(req: StepRequest) -> dict[str, Any]:
     eng = SystemResonanceEngine(governor_tier=req.tier, vqc_backend=req.backend)
-    out = eng.step(seal=req.seal)
+    loc = (
+        (req.live_lat, req.live_lon)
+        if req.live_lat is not None and req.live_lon is not None
+        else None
+    )
+    out = eng.step(seal=req.seal, live_location=loc, sample_rate_hz=req.sample_rate_hz)
     if req.seal and req.pin_to_lighthouse and out.get("dragon_seal"):
         out["dragon_seal"] = eng.ledger.seal_head(pin_to_lighthouse=True)
 
@@ -149,6 +158,51 @@ def odl_anchor(req: AnchorRequest) -> dict[str, Any]:
         raise HTTPException(status_code=404, detail="Ledger is empty")
     result = anchor_epoch(head, document_type=req.document_type, dry_run=req.dry_run)
     return {"status": "ok", "anchor": result, "epoch": _enrich_epoch(head)}
+
+
+class PollRequest(BaseModel):
+    lat: float = 30.6
+    lon: float = -95.1
+    radius_km: float = 250.0
+    synthetic: int = 0  # >0 seeds N labeled-SYNTHETIC samples (offline demo)
+
+
+@router.post("/feeds/poll")
+def odl_feeds_poll(req: PollRequest) -> dict[str, Any]:
+    """Poll live TELPAI feeds at lat/lon, append to the rolling buffer."""
+    buf = SignalBuffer()
+    seeded = 0
+    if req.synthetic > 0:
+        seeded = synthesize_history(buf, n=int(req.synthetic))
+    result = poll_once(req.lat, req.lon, buffer=buf, radius_km=req.radius_km)
+    result["synthetic_seeded"] = seeded
+    return result
+
+
+@router.get("/harmony")
+def odl_harmony(min_samples: int = 8, sample_rate_hz: float = 1.0) -> dict[str, Any]:
+    """Compute the harmonic Harmony Score from the accumulated signal buffer."""
+    return harmony_from_live(
+        buffer=SignalBuffer(), poll=False,
+        min_samples=min_samples, sample_rate_hz=sample_rate_hz,
+    )
+
+
+@router.get("/similar")
+def odl_similar(top_k: int = 5) -> dict[str, Any]:
+    """Nearest historical epochs to the head, by HDC state-signature similarity."""
+    ledger = OmniDimensionalLedger()
+    head = ledger.head()
+    if not head:
+        return {"status": "empty", "matches": []}
+    dims = (head.get("resonance") or {}).get("dimensions") or {}
+    if not dims:
+        return {"status": "no_dimensions", "matches": []}
+    eng = SystemResonanceEngine()
+    matches = eng.search_history(dims, top_k=int(top_k) + 1)
+    head_id = head.get("epoch_id")
+    matches = [m for m in matches if m.get("epoch_id") != head_id][: int(top_k)]
+    return {"status": "ok", "head_epoch": head_id, "matches": matches}
 
 
 @router.get("/dimensions")

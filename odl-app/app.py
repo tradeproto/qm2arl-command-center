@@ -96,6 +96,56 @@ def verdict_color(verdict: str) -> str:
     }.get(verdict, "#95a5a6")
 
 
+def get_harmony(api_ok: bool) -> dict[str, Any] | None:
+    """Current harmonic Harmony Score from the accumulated signal buffer."""
+    if api_ok:
+        h = api_get("/odl/harmony")
+        if h is not None:
+            return h
+    try:
+        from src.odl.feeds import SignalBuffer, harmony_from_live
+        return harmony_from_live(buffer=SignalBuffer(), poll=False, min_samples=8)
+    except Exception as e:
+        return {"status": "error", "note": str(e)}
+
+
+def get_nearest_history(api_ok: bool, top_k: int = 5) -> dict[str, Any] | None:
+    """Nearest historical epochs to the head, by HDC state signature."""
+    if api_ok:
+        s = api_get(f"/odl/similar?top_k={top_k}")
+        if s is not None:
+            return s
+    try:
+        from src.odl.ledger import OmniDimensionalLedger
+        from src.odl.engine import SystemResonanceEngine
+        head = OmniDimensionalLedger().head()
+        if not head:
+            return {"status": "empty", "matches": []}
+        dims = (head.get("resonance") or {}).get("dimensions") or {}
+        eng = SystemResonanceEngine()
+        matches = eng.search_history(dims, top_k=top_k + 1)
+        head_id = head.get("epoch_id")
+        matches = [m for m in matches if m.get("epoch_id") != head_id][:top_k]
+        return {"status": "ok", "head_epoch": head_id, "matches": matches}
+    except Exception as e:
+        return {"status": "error", "note": str(e)}
+
+
+def do_poll_feeds(api_ok: bool, lat: float, lon: float, synthetic: int = 0) -> dict[str, Any] | None:
+    if api_ok:
+        r = api_post("/odl/feeds/poll", {"lat": lat, "lon": lon, "synthetic": synthetic})
+        if r is not None:
+            return r
+    try:
+        from src.odl.feeds import SignalBuffer, poll_once, synthesize_history
+        buf = SignalBuffer()
+        if synthetic > 0:
+            synthesize_history(buf, n=synthetic)
+        return poll_once(lat, lon, buffer=buf)
+    except Exception as e:
+        return {"values": {}, "errors": {"_local": str(e)}, "buffer_height": 0}
+
+
 # ─── Sidebar ───
 with st.sidebar:
     st.title("◎ ODL")
@@ -130,6 +180,13 @@ with st.sidebar:
     seal_only = st.button("Seal head epoch", use_container_width=True)
     anchor_only = st.button("Anchor head epoch", use_container_width=True)
 
+    st.divider()
+    st.subheader("Live feeds → Harmony")
+    feed_lat = st.number_input("Latitude", value=30.6, format="%.4f")
+    feed_lon = st.number_input("Longitude", value=-95.1, format="%.4f")
+    poll_feeds = st.button("◷ Poll live feeds", use_container_width=True)
+    seed_demo = st.button("Seed synthetic demo (48)", use_container_width=True)
+
 # ─── Action handlers ───
 action_result: dict[str, Any] | None = None
 if run_step or seal_only or anchor_only:
@@ -159,6 +216,13 @@ if run_step or seal_only or anchor_only:
                 from src.odl.ledger import OmniDimensionalLedger
                 head = OmniDimensionalLedger().head()
                 action_result = {"anchor": anchor_epoch(head, dry_run=anchor_dry)} if head else {"error": "empty ledger"}
+
+if poll_feeds or seed_demo:
+    with st.spinner("Polling live data feeds…"):
+        pr = do_poll_feeds(api_ok, feed_lat, feed_lon, synthetic=48 if seed_demo else 0)
+    if pr:
+        nvals = len(pr.get("values", {}))
+        st.toast(f"Feeds polled: {nvals} signals · buffer {pr.get('buffer_height', 0)}", icon="◷")
 
 # ─── Load state ───
 res_data = api_get("/odl/resonance") if api_ok else None
@@ -270,6 +334,69 @@ if page == "Live Resonance":
                 st.json(anchor)
             elif action_result and action_result.get("anchor"):
                 st.json(action_result["anchor"])
+
+        # ─── Harmonic Resonance + Nearest History ───
+        st.divider()
+        h_col, n_col = st.columns([1, 1])
+
+        with h_col:
+            st.subheader("Harmonic Resonance")
+            st.caption("Harmony Score from live signal feeds (FFT + coupling eigen-analysis).")
+            harmony = get_harmony(api_ok)
+            if not harmony or harmony.get("status") == "error":
+                st.warning(f"Harmony unavailable: {(harmony or {}).get('note', 'no data')}")
+            elif harmony.get("status") == "accumulating":
+                ready = harmony.get("signals_ready", [])
+                st.info(
+                    f"Accumulating — buffer height {harmony.get('buffer_height', 0)}, "
+                    f"{len(ready)} signal(s) ready. Use **Poll live feeds** (or **Seed "
+                    f"synthetic demo**) in the sidebar to fill the buffer."
+                )
+            else:
+                hh = harmony.get("harmony") or {}
+                hv = hh.get("verdict", "—")
+                hc1, hc2, hc3 = st.columns(3)
+                hc1.metric("Harmony H", f"{hh.get('harmony_score', 0):.3f}")
+                hc2.metric("Verdict", hv)
+                hc3.metric("Phase align", f"{hh.get('phase_alignment', 0):.3f}")
+                st.markdown(
+                    f"<div style='height:5px;background:{verdict_color(hv)};border-radius:3px'></div>",
+                    unsafe_allow_html=True,
+                )
+                st.caption(
+                    f"Spectral coherence {hh.get('spectral_coherence', 0):.3f} · "
+                    f"amplitude balance {hh.get('amplitude_balance', 0):.3f} · "
+                    f"{hh.get('n_signals', 0)} signals × {hh.get('n_samples', 0)} samples"
+                )
+                diss = hh.get("dissonant_pairs") or []
+                if diss:
+                    st.markdown("**Dissonant couplings** (one dimension rising as another falls):")
+                    for d in diss[:4]:
+                        kind = " · extraction-vs-vitality" if d.get("kind") == "extraction-vs-vitality" else ""
+                        st.write(f"- `{d['a']}` ✕ `{d['b']}`  (r = {d['correlation']}){kind}")
+                else:
+                    st.success("No strong dissonant couplings detected.")
+
+        with n_col:
+            st.subheader("Nearest in History")
+            st.caption("Past epochs most like this state (HDC hypervector similarity).")
+            near = get_nearest_history(api_ok, top_k=5)
+            hdc_src = (epoch.get("sources") or {}).get("hdc") or {}
+            if hdc_src.get("fingerprint"):
+                st.caption(f"Signature `{hdc_src['fingerprint'][:16]}…` · "
+                           f"history size {hdc_src.get('history_size', 0)} · dim {hdc_src.get('dim', '—')}")
+            matches = (near or {}).get("matches") or []
+            if not matches:
+                st.info("No prior epochs to compare yet — record more resonance cycles.")
+            else:
+                for m in matches:
+                    sim = m.get("similarity", 0)
+                    bar = "▰" * int(round(sim * 10)) + "▱" * (10 - int(round(sim * 10)))
+                    st.write(f"`{m['epoch_id']}`")
+                    st.markdown(
+                        f"<span style='color:#9b59b6'>{bar}</span> &nbsp; {sim:.3f}",
+                        unsafe_allow_html=True,
+                    )
 
     if action_result:
         with st.expander("Last action result"):
