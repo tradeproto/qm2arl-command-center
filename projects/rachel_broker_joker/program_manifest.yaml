@@ -25,6 +25,8 @@ artifacts:
     title: The Kill Discipline
     subtitle: Why Serious Desks End Deals Early
     title_rationale: Sales and commodity training is not for the weak or thin-skinned; the title filters serious operators
+    distribution: public_bestseller_potential
+    protocol_access: invitation_only
     deliverables:
       - outline_toc
       - preface

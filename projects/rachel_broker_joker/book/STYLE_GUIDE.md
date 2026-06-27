@@ -38,7 +38,19 @@ That is not a bug. It is the filter. Serious desks end deals early because weak 
 
 ---
 
-## Chapter Length (Phase 1 Target)
+## Public Bestseller / Private Gate
+
+**Rachel’s insight:** *“The book is not for everyone — but everyone will want to read it.”* Both are true.
+
+| Everyone can… | Not everyone will… |
+|---------------|-------------------|
+| Buy and read the book | Finish it or apply it |
+| Share it, quote it, assign it to desks | Qualify for certification |
+| Aspire to “serious desk” status | Operate at protocol level without enforcement |
+
+**“Not for everyone” on the cover increases demand** — curiosity, aspiration, identity, word of mouth. Quiet scale governs the **protocol and Rachel’s calendar**, not book distribution. The book is designed to spread; see [`BOOK_POSITIONING.md`](BOOK_POSITIONING.md) and [`AMAZON_LISTING_COPY.md`](AMAZON_LISTING_COPY.md).
+
+**Voice rule for mass appeal:** Write for the **ambitious reader** who wants to prove they belong — not only for operators already certified. Part II (how trades close) is the bestseller engine; Part I is the filter that sells copies.
 
 | Section | Words | Notes |
 |---------|-------|-------|

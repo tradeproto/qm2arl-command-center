@@ -12,6 +12,8 @@ They didn’t. They ran for an hour. Sometimes two. The counterparty learned not
 
 This is not a book for everyone. Sales and commodity work at the level I operate in is **not for the weak or thin-skinned.** You will read about ending calls, killing deals, and enforcing silence — and if that sounds cruel rather than professional, you are not the reader I wrote for. That is intentional.
 
+And yet — **everyone in commodities will want to read it.** Not because I soften the standard, but because no one else is saying this plainly. The book is public. It is meant to spread — to desks, trade houses, investors, and operators who want to know what serious players already do. Reading is open. Certification is not. That is how the standard travels without me on every call.
+
 ---
 
 ## What I Actually Do

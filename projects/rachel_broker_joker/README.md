@@ -12,11 +12,11 @@
 Rachel sits on high-value global trade intelligence — commodities, oil & gas flows, counterparty risk — and has been giving it away for free to major energy players. This program turns that expertise into a **standard**, not a personality:
 
 1. **Protocol core** (internal) — enforce discipline on the desk first  
-2. **Book** (public artifact) — establish authority, filter serious actors  
+2. **Book** (public artifact) — establish authority; **designed to spread** (bestseller potential)  
 3. **Training module** (private) — certify operators who enforce without Rachel  
 4. **Webinar / Master Class** (later) — one-to-many after proof exists  
 
-**Operating mode:** Quiet but scalable. Invitation-only. No open checkout. No hype funnels.
+**Operating mode:** Quiet but scalable for **protocol and advisory**. The **book is public** — everyone can read it; not everyone will qualify to operate. See [`book/BOOK_POSITIONING.md`](book/BOOK_POSITIONING.md).
 
 ---
 
@@ -28,7 +28,8 @@ Rachel sits on high-value global trade intelligence — commodities, oil & gas f
 | [`ACTION_PLAN.md`](ACTION_PLAN.md) | Current phase + weekly focus | Active |
 | [`90_DAY_ROLLOUT.md`](90_DAY_ROLLOUT.md) | Day-by-day enforcement tracker | Day 1 |
 | [`protocol/`](protocol/) | Desk card, SOP, scripts — **internal only** | Deploy today |
-| [`book/`](book/) | Public manuscript — Phase 1 only | In progress |
+| [`book/`](book/) | Public manuscript — Phase 1 + bestseller positioning | In progress |
+| [`book/BOOK_POSITIONING.md`](book/BOOK_POSITIONING.md) | Why “not for everyone” drives mass readership | Reference |
 | [`training/`](training/) | Certification curriculum — **after internal runs** | Not started |
 | [`monetization/BMC_PRIORITIES.md`](monetization/BMC_PRIORITIES.md) | FEP-scored offer stack | Reference |
 

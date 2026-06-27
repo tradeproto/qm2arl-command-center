@@ -15,6 +15,8 @@ Locked by Rachel · 2026-06-27
 
 **Why this title:** Sales and commodity training is not for the weak or thin-skinned. Ending deals early, holding silence, and killing weak structures will offend people who need comfort more than clarity. *The Kill Discipline* names the standard and filters the room before the first call.
 
+**Bestseller angle (Rachel):** “Not for everyone” drives *more* readers — curiosity, aspiration, word of mouth. **Everyone can read the book;** not everyone will apply it or qualify for certification. The book spreads publicly; the protocol stays private. See [`BOOK_POSITIONING.md`](BOOK_POSITIONING.md).
+
 <details>
 <summary>Other options considered</summary>
 
