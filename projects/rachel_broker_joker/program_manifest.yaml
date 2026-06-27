@@ -1,0 +1,48 @@
+program_id: rachel_broker_joker
+display_name: Joker Broker Protocol
+client: Rachel
+website: https://five.oceanbluexports.com
+prepared_by: Green Horizon Innovation LLC
+started: 2026-06-27
+status: day_1_internal_installation
+
+industry:
+  - global_trade_intelligence
+  - commodities_oil_gas
+  - strategic_advisory_energy
+
+operating_mode: quiet_but_scalable
+
+team_size_fte: 1-3
+
+artifacts:
+  protocol_core:
+    status: deploy
+    visibility: internal_only
+  book_phase_1:
+    status: in_progress
+    visibility: public
+    title: The Kill Discipline
+    subtitle: Why Serious Desks End Deals Early
+    title_rationale: Sales and commodity training is not for the weak or thin-skinned; the title filters serious operators
+    deliverables:
+      - outline_toc
+      - preface
+      - chapter_01
+      - bridge_page
+  training_module_v1:
+    status: not_started
+    visibility: invitation_only
+    blocked_by: internal_certification_runs
+  webinar_master_class:
+    status: not_started
+    blocked_by:
+      - training_module_v1
+      - first_certified_operators
+
+monetization_priority:
+  - executive_trade_intelligence_retainer
+  - bespoke_advisory_formalized
+  - deal_validation_risk_review
+  - private_trade_intelligence_circle
+  - commodity_trades_master_class
